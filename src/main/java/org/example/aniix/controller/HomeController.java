@@ -11,6 +11,6 @@ public class HomeController {
     @GetMapping("")
     public String home(Model model){
         model.addAttribute("Message","Hello");
-        return "home/home.jsp";
+        return "home/Home.jsp";
     }
 }
