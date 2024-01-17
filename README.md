@@ -1,4 +1,6 @@
-![image](https://github.com/Whitechan2077/AniiX/assets/68390535/a4a7e4f5-a5bf-4fd4-9d84-2dc3ef685153)# AniiX
+![image](https://github.com/Whitechan2077/AniiX/assets/68390535/a4a7e4f5-a5bf-4fd4-9d84-2dc3ef685153)
+
+# AniiX
 Online Flim Streaming web 
 
 
