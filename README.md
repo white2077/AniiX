@@ -30,12 +30,6 @@ Online Anime Streaming web
 
 
 
-- Category Page:
-  
-![App Screenshot](https://cdn.discordapp.com/attachments/1197135161746272316/1197280198262001814/screencapture-localhost-8080-category-16-2024-01-18-03_43_28.png?ex=65bab113&is=65a83c13&hm=ca7abab0f95df7a1bc8a54dec571bf30a6b02544df46cc50c8eda55c29315126&)
-
-
-
 - Details Page:
   
 ![App Screenshot](https://cdn.discordapp.com/attachments/1197135161746272316/1197280940683178134/screencapture-localhost-8080-flim-1-2024-01-18-03_46_38.png?ex=65bab1c4&is=65a83cc4&hm=d4d4e9cec4d45caa2eafa4e1d8c5fd34af3aca2e1369e3c7177afdbe9325f1a4&)
