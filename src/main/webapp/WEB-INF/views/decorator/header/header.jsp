@@ -14,7 +14,7 @@
                     <div class="header__content">
                         <!-- header logo -->
                         <a href="/" class="header__logo">
-                            <img src="/img/logo.svg" alt="">
+                            <img src="/img/aniix.svg" alt="">
                         </a>
                         <!-- end header logo -->
 

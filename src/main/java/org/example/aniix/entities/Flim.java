@@ -32,4 +32,6 @@ public class Flim {
     private List<Category> categories;
     @OneToMany(mappedBy = "flim")
     private Set<Season> seasons;
+    @ManyToMany
+    private Set<Tag> tags;
 }
