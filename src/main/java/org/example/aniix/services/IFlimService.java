@@ -1,3 +1,6 @@
 package org.example.aniix.services;
-public interface IFlimService extends ICrudService {
+
+import org.example.aniix.dtos.FlimDTO;
+
+public interface IFlimService extends ICrudService<FlimDTO,Long> {
 }
