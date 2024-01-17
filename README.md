@@ -20,5 +20,5 @@ Online Anime Streaming web
 ## Screenshots
 - Home Page:
   
-![App Screenshot](https://cdn.discordapp.com/attachments/1037422036785561620/1197224963741061302/screencapture-localhost-8080-2024-01-18-00_04_03.png?ex=65ba7da2&is=65a808a2&hm=3daa3f74da1c4f3cfd8ee95634b4ff03b6804f5348ba4f5eb1622c8e1984f2b8&)
+![App Screenshot](https://cdn.discordapp.com/attachments/1197135161746272316/1197234783701450803/screencapture-localhost-8080-2024-01-18-00_42_53.png?ex=65ba86c7&is=65a811c7&hm=39de148485f1c0fced0fcc3bd7992f1ce87d2c383ccbe21038a69d5f9454fdf8&)
 
