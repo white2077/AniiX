@@ -13,8 +13,8 @@
             <div class="col-12 col-md-3">
                 <h6 class="footer__title">Download Our App</h6>
                 <ul class="footer__app">
-                    <li><a href="#"><img src="img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
-                    <li><a href="#"><img src="img/google-play-badge.png" alt=""></a></li>
+                    <li><a href="#"><img src="/img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
+                    <li><a href="#"><img src="/img/google-play-badge.png" alt=""></a></li>
                 </ul>
             </div>
             <!-- end footer list -->

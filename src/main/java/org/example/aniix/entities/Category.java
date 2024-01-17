@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -18,5 +19,5 @@ public class Category {
     @Column(columnDefinition = "nvarchar(150)")
     private String name;
     @ManyToMany(mappedBy = "categories")
-    List<Flim> flimList;
+    Set<Flim> flimList;
 }

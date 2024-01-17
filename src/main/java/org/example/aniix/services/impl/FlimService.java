@@ -2,6 +2,7 @@ package org.example.aniix.services.impl;
 
 import org.example.aniix.dtos.FlimDTO;
 import org.example.aniix.entities.Flim;
+import org.example.aniix.repositories.ICategoryRepository;
 import org.example.aniix.repositories.IFlimRepository;
 import org.example.aniix.services.IFlimService;
 import org.modelmapper.ModelMapper;
@@ -17,6 +18,8 @@ public class FlimService implements IFlimService {
     private IFlimRepository flimRepository;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private ICategoryRepository categoryRepository;
     @Override
     public List<FlimDTO> getAll() {
         return flimRepository.findAll()
@@ -49,5 +52,15 @@ public class FlimService implements IFlimService {
     @Override
     public void delete(Long id) {
         flimRepository.findById(id);
+    }
+
+    @Override
+    public List<FlimDTO> getAllByCategoryId(Long id) {
+       return categoryRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Not Found Category :(( "))
+                .getFlimList()
+                .stream()
+                .map(flim -> modelMapper.map(flim, FlimDTO.class))
+                .toList();
     }
 }

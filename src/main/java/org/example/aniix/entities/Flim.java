@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -22,6 +23,7 @@ public class Flim {
     private String thumbnail;
     @Column(columnDefinition = "nvarchar(600)")
     private String description;
+    private int releaseYear;
     private boolean type;
     private Timestamp uploadDate;
     private boolean status;
@@ -29,5 +31,5 @@ public class Flim {
     @ManyToMany
     private List<Category> categories;
     @OneToMany(mappedBy = "flim")
-    private List<Season> seasons;
+    private Set<Season> seasons;
 }
