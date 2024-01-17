@@ -7,12 +7,13 @@ Online Flim Streaming web
 ## Tech
 
 - Spring Security
-- Spring Web MVc
+- Spring Web MVC
 - Spring Data JPA
 - Java Server Page
 - Angular js
 - SQL Server
-
+- Boostrap 
+- Jquery
 
 
 ## Screenshots
