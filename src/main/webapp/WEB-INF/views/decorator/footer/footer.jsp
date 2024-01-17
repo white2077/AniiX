@@ -45,8 +45,8 @@
             <div class="col-12 col-sm-4 col-md-3">
                 <h6 class="footer__title">Contact</h6>
                 <ul class="footer__list">
-                    <li><a href="tel:+18002345678">+1 (800) 234-5678</a></li>
-                    <li><a href="mailto:support@moviego.com">support@flixgo.com</a></li>
+                    <li><a href="tel:+84397767819">+84397767819</a></li>
+                    <li><a href="mailto:buidung8198@gmail.com">buidung8198@gmail.com</a></li>
                 </ul>
                 <ul class="footer__social">
                     <li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
@@ -60,7 +60,7 @@
             <!-- footer copyright -->
             <div class="col-12">
                 <div class="footer__copyright">
-                    <small><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></small>
+                    <small><a target="_blank" href="https://github.com/Whitechan2077">@White2077 - Bui Hoang Dung - Aniix</a></small>
 
                     <ul>
                         <li><a href="#">Terms of Use</a></li>

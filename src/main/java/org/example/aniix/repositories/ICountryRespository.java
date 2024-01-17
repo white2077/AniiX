@@ -1,4 +1,7 @@
 package org.example.aniix.repositories;
 
-public interface ICountryRespository {
+import org.example.aniix.entities.Country;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ICountryRespository extends JpaRepository<Country,Long> {
 }

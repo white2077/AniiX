@@ -15,7 +15,7 @@
 
 <section class="section details">
     <!-- details background -->
-    <div class="details__bg" data-bg="img/home/home__bg.jpg"></div>
+    <div class="details__bg" data-bg="${flim.thumbnail}"></div>
     <!-- end details background -->
 
     <!-- details content -->
@@ -97,17 +97,17 @@
                                     <table class="accordion__list">
                                         <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>Episodes</th>
                                             <th>Title</th>
                                             <th>Upload date</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                        <c:forEach items="${season.episodes}" var="episode">
+                                        <c:forEach items="${season.episodes}" var="episode" varStatus="loop">
                                             <tr>
-                                                <th>${episode.id}</th>
-                                                <td>${season.seasonName} Ep.${episode.episode}</td>
+                                                <th>${loop.count}</th>
+                                                <td>${season.seasonName}</td>
                                                 <td>${episode.uploadDate}</td>
                                             </tr>
                                         </c:forEach>
