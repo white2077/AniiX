@@ -1,4 +1,4 @@
-
+![image](https://github.com/Whitechan2077/AniiX/assets/68390535/d52bdd70-6259-4c84-8fc5-73b374900fde)![image](https://github.com/Whitechan2077/AniiX/assets/68390535/39676ee0-5010-4d7a-8083-21a68783e9ae)
 # AniiX
 
 Online Flim Streaming web 
@@ -17,6 +17,6 @@ Online Flim Streaming web
 
 
 ## Screenshots
-
-![App Screenshot](https://cdn.discordapp.com/attachments/1037422036785561620/1197132065901117571/image.png?ex=65ba271e&is=65a7b21e&hm=45ae66726f6f51de4542afc7c12964bf704b3fc366301ee6e974dbc45e75c2f2&)
+- Home Page:
+![App Screenshot](https://cdn.discordapp.com/attachments/1037422036785561620/1197224963741061302/screencapture-localhost-8080-2024-01-18-00_04_03.png?ex=65ba7da2&is=65a808a2&hm=3daa3f74da1c4f3cfd8ee95634b4ff03b6804f5348ba4f5eb1622c8e1984f2b8&)
 
