@@ -1,8 +1,6 @@
 package org.example.aniix.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -10,7 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Flim {
@@ -31,7 +30,9 @@ public class Flim {
     @ManyToMany
     private List<Category> categories;
     @OneToMany(mappedBy = "flim")
-    private Set<Season> seasons;
+    private List<Season> seasons;
     @ManyToMany
     private Set<Tag> tags;
+    @ManyToOne
+    private Country country;
 }

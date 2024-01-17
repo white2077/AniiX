@@ -5,21 +5,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Episode {
+public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    private int episode;
-    @Column(columnDefinition = "nvarchar(2000)")
-    private String linkFlim;
-    private Timestamp uploadDate;
-    private boolean status;
-    @ManyToOne
-    private Season season;
+    @Column(columnDefinition = "nvarchar(100)")
+    private String name;
+    @OneToMany(mappedBy = "country")
+    private List<Flim> flims;
 }

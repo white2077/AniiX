@@ -21,5 +21,5 @@ public class Season {
     @ManyToOne
     private Flim flim;
     @OneToMany(mappedBy = "season")
-    List<Episode> episodes;
+    private List<Episode> episodes;
 }

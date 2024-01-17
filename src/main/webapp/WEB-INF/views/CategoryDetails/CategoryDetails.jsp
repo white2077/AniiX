@@ -170,7 +170,7 @@
                             <div class="col-12 col-sm-4">
                                 <div class="card__cover">
                                     <img src="${x.thumbnail}" alt="">
-                                    <a href="#" class="card__play">
+                                    <a href="/flim/${x.id}" class="card__play">
                                         <i class="icon ion-ios-play"></i>
                                     </a>
                                 </div>
@@ -178,18 +178,20 @@
 
                             <div class="col-12 col-sm-8">
                                 <div class="card__content">
-                                    <h3 class="card__title"><a href="#">${x.name}</a></h3>
+                                    <h3 class="card__title"><a href="/flim/${x.id}">${x.name}</a></h3>
                                     <span class="card__category">
-										<a href="#">Action</a>
-										<a href="#">Triler</a>
+										<c:forEach items="${x.categories}" var="category">
+                                            <a href="/category/${category.id}">${category.name}</a>
+                                        </c:forEach>
 									</span>
 
                                     <div class="card__wrap">
                                         <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
 
                                         <ul class="card__list">
-                                            <li>HD</li>
-                                            <li>16+</li>
+                                            <c:forEach items="${x.tags}" var="tag">
+                                                <li>${tag.tag}</li>
+                                            </c:forEach>
                                         </ul>
                                     </div>
 
