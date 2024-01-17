@@ -13,4 +13,7 @@ public class HomeController {
         model.addAttribute("Message","Hello");
         return "home/Home.jsp";
     }
+    public String signIn(){
+        return "";
+    }
 }
