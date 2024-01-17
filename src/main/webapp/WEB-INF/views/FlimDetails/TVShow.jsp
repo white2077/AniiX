@@ -76,8 +76,7 @@
 
             <!-- player -->
             <div class="col-12 col-xl-6">
-                <iframe width="100%" height="100%" src="https://short.ink/qyhJbUwNR" frameborder="0" scrolling="0" allowfullscreen></iframe>
-            </div>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/jF-tPrcAimQ" title="【歌ってみた】祝福 / YOASOBI  【にじさんじフミ】" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>            </div>
             <!-- end player -->
 
             <!-- accordion -->
@@ -86,14 +85,14 @@
                     <c:forEach items="${flim.seasons}" var="season">
 
                         <div class="accordion__card">
-                            <div class="card-header" id="headingOne">
-                                <button type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <div class="card-header" id="heading${season.id}">
+                                <button type="button" data-toggle="collapse" data-target="#collapse${season.id}" aria-expanded="true" aria-controls="collapseOne">
                                     <span>${season.seasonName}</span>
 <%--                                    <span>22 Episodes from Nov, 2004 until May, 2005</span>--%>
                                 </button>
                             </div>
 
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div id="collapse${season.id}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                 <div class="card-body">
                                     <table class="accordion__list">
                                         <thead>
@@ -171,7 +170,7 @@
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
-                        <img src="img/covers/cover.jpg" alt="">
+                        <img src="/img/covers/cover.jpg" alt="">
                         <a href="#" class="card__play">
                             <i class="icon ion-ios-play"></i>
                         </a>
@@ -192,7 +191,7 @@
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
-                        <img src="img/covers/cover3.jpg" alt="">
+                        <img src="/img/covers/cover3.jpg" alt="">
                         <a href="#" class="card__play">
                             <i class="icon ion-ios-play"></i>
                         </a>
@@ -212,7 +211,7 @@
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
-                        <img src="img/covers/cover2.jpg" alt="">
+                        <img src="/img/covers/cover2.jpg" alt="">
                         <a href="#" class="card__play">
                             <i class="icon ion-ios-play"></i>
                         </a>
@@ -234,7 +233,7 @@
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
-                        <img src="img/covers/cover6.jpg" alt="">
+                        <img src="/img/covers/cover6.jpg" alt="">
                         <a href="#" class="card__play">
                             <i class="icon ion-ios-play"></i>
                         </a>
@@ -255,7 +254,7 @@
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
-                        <img src="img/covers/cover4.jpg" alt="">
+                        <img src="/img/covers/cover4.jpg" alt="">
                         <a href="#" class="card__play">
                             <i class="icon ion-ios-play"></i>
                         </a>
@@ -276,7 +275,7 @@
             <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
                 <div class="card">
                     <div class="card__cover">
-                        <img src="img/covers/cover5.jpg" alt="">
+                        <img src="/img/covers/cover5.jpg" alt="">
                         <a href="#" class="card__play">
                             <i class="icon ion-ios-play"></i>
                         </a>
