@@ -110,7 +110,7 @@
         $http.get('http://localhost:8080/api/v1/category-api/get-all-category')
             .then(function(response) {
                 $scope.responseData = response.data;
-                console.log(response.data)
+                console.log(response)
             })
             .catch(function(error) {
                 // Xử lý lỗi

@@ -107,7 +107,7 @@
                                         <c:forEach items="${season.episodes}" var="episode" varStatus="loop">
                                             <tr>
                                                 <th>${loop.count}</th>
-                                                <td>${season.seasonName}</td>
+                                                <td><a href="/flim/${flim.id}/watch/${episode.id}">${season.seasonName}</a></td>
                                                 <td>${episode.uploadDate}</td>
                                             </tr>
                                         </c:forEach>
