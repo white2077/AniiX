@@ -10,7 +10,6 @@ import java.sql.Timestamp;
 @Data
 public class EpisodeDTO {
     private Long id;
-    private Integer episode;
     private String linkFlim;
     private Boolean status;
     private Timestamp uploadDate;

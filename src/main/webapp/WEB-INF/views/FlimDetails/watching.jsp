@@ -14,7 +14,8 @@
 <!-- details -->
 <section class="section details">
     <!-- details background -->
-    <div class="details__bg" data-bg="/img/home/home__bg.jpg"></div>
+<%--    /img/home/home__bg.jpg--%>
+    <div class="details__bg" data-bg="${flim.thumbnail}"></div>
     <!-- end details background -->
 
     <!-- details content -->
