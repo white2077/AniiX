@@ -19,7 +19,4 @@ public class HomeController {
         model.addAttribute("flimList",flimService.getAll());
         return "home/Home.jsp";
     }
-    public String signIn(){
-        return "";
-    }
 }
