@@ -28,7 +28,7 @@
                             <li class="header__nav-item">
                                 <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
 
-                                <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
+                                <ul class="dropdown-menu header__dropdown-menu" style="display: grid;grid-template-columns: repeat(3,1fr);column-gap: 20px;width: fit-content" aria-labelledby="dropdownMenuCatalog">
                                         <li ng-repeat = "x in responseData"><a href={{"/category/"+x.id}} >{{x.name}}</a></li>
                                 </ul>
                             </li>
@@ -59,7 +59,7 @@
                                 <i class="icon ion-ios-search"></i>
                             </button>
 
-                            <a href="signin.html" class="header__sign-in">
+                            <a href="/login" class="header__sign-in">
                                 <i class="icon ion-ios-log-in"></i>
                                 <span>sign in</span>
                             </a>
