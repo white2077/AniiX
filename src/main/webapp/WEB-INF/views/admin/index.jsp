@@ -69,11 +69,14 @@
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
                         All Anime
+                        <a class="btn btn-primary align-content-lg-start" href="#">Add new</a>
+
                     </div>
                     <div class="card-body">
                         <table id="datatablesSimple">
                             <thead>
                             <tr>
+                                <th>Thumbnail</th>
                                 <th>Name</th>
                                 <th>All seasons</th>
                                 <th>Country</th>
@@ -81,10 +84,13 @@
                                 <th>Tags</th>
                                 <th>Release year</th>
                                 <th>Upload date</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
+                                <th>Thumbnail</th>
                                 <th>Name</th>
                                 <th>All seasons</th>
                                 <th>Country</th>
@@ -92,11 +98,14 @@
                                 <th>Tags</th>
                                 <th>Release year</th>
                                 <th>Upload date</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                             </tfoot>
                             <tbody>
                             <c:forEach items="${flim}" var="x">
                                 <tr>
+                                    <td><img src="${x.thumbnail}" width="50vh" alt="" srcset=""></td>
                                     <td>${x.name}</td>
                                     <td>${x.seasons.size()}</td>
                                     <td>${x.country.name}</td>
@@ -112,6 +121,8 @@
                                     </td>
                                     <td>${x.releaseYear}</td>
                                     <td>${x.uploadDate}</td>
+                                    <td><a href="#">Edit</a></td>
+                                    <td><a href="#">Delete</a></td>
                                 </tr>
                             </c:forEach>
                             </tbody>

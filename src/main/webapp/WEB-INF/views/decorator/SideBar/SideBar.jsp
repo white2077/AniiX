@@ -47,7 +47,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            Start Bootstrap
+            @White2077
         </div>
     </nav>
 </div>

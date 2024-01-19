@@ -26,7 +26,6 @@
 <link rel="stylesheet" href="/css/default-skin.css" type="text/css">
 <link rel="stylesheet" href="/css/main.css" type="text/css">
 
-
 <!-- Favicons -->
 <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="/icon/favicon-32x32.png">
