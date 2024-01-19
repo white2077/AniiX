@@ -1,4 +1,4 @@
-
+![App Screenshot]([https://cdn.discordapp.com/attachments/1197135161746272316/1197234783701450803/screencapture-localhost-8080-2024-01-18-00_42_53.png?ex=65ba86c7&is=65a811c7&hm=39de148485f1c0fced0fcc3bd7992f1ce87d2c383ccbe21038a69d5f9454fdf8&](https://cdn.discordapp.com/attachments/1197135161746272316/1197705175478063164/Them_tieu_e.png?ex=65bc3cde&is=65a9c7de&hm=e5f6408bbc8e426cd78b18877993383762589b429751d7130a3442093adc0b4e&))
 
 # AniiX
 Online Anime Streaming web 
