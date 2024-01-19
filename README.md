@@ -1,4 +1,4 @@
-![image](https://github.com/Whitechan2077/AniiX/assets/68390535/8bb8fdce-c19f-4b3b-800b-797a38834b65)![image](https://github.com/Whitechan2077/AniiX/assets/68390535/221abd91-1776-4117-a948-13becc8a6718)![image](https://github.com/Whitechan2077/AniiX/assets/68390535/a4a7e4f5-a5bf-4fd4-9d84-2dc3ef685153)
+
 
 # AniiX
 Online Anime Streaming web 
