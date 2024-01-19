@@ -20,7 +20,7 @@
                     <!-- authorization form -->
                     <form:form class="sign__form">
                         <a href="#" class="sign__logo">
-                            <img src="img/aniix.svg" alt="">
+                            <img width="100%" src="img/aniix.svg" alt="">
                         </a>
 
                         <div class="sign__group">
@@ -38,7 +38,7 @@
 
                         <input class="sign__btn" type="submit" value="Sign in"></input>
 
-                        <span class="sign__text">Don't have an account? <a href="signup.html">Sign up!</a></span>
+                        <span class="sign__text">Don't have an account? <a href="/register">Sign up!</a></span>
 
                         <span class="sign__text"><a href="#">Forgot password?</a></span>
                     </form:form>
