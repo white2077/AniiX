@@ -19,7 +19,7 @@
                 <div class="sign__content">
                     <!-- authorization form -->
                     <form:form class="sign__form">
-                        <a href="#" class="sign__logo">
+                        <a href="/" class="sign__logo">
                             <img width="100%" src="img/aniix.svg" alt="">
                         </a>
 

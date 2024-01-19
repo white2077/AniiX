@@ -18,7 +18,7 @@
         <div class="sign__content">
           <!-- registration form -->
           <form action="/create-account" method="post" class="sign__form">
-            <a href="index.html" class="sign__logo">
+            <a href="/" class="sign__logo">
               <img width="100%" src="/img/aniix.svg" alt="">
             </a>
 
