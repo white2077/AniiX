@@ -1,4 +1,4 @@
-![image](https://github.com/Whitechan2077/AniiX/assets/68390535/a4a7e4f5-a5bf-4fd4-9d84-2dc3ef685153)
+![image](https://github.com/Whitechan2077/AniiX/assets/68390535/8bb8fdce-c19f-4b3b-800b-797a38834b65)![image](https://github.com/Whitechan2077/AniiX/assets/68390535/221abd91-1776-4117-a948-13becc8a6718)![image](https://github.com/Whitechan2077/AniiX/assets/68390535/a4a7e4f5-a5bf-4fd4-9d84-2dc3ef685153)
 
 # AniiX
 Online Anime Streaming web 
@@ -33,4 +33,10 @@ Online Anime Streaming web
 - Details Page:
   
 ![App Screenshot](https://cdn.discordapp.com/attachments/1197135161746272316/1197280940683178134/screencapture-localhost-8080-flim-1-2024-01-18-03_46_38.png?ex=65bab1c4&is=65a83cc4&hm=d4d4e9cec4d45caa2eafa4e1d8c5fd34af3aca2e1369e3c7177afdbe9325f1a4&)
+
+
+
+- Watching Page:
+  
+![App Screenshot](https://cdn.discordapp.com/attachments/1197135161746272316/1197702980770738256/image.png?ex=65bc3ad2&is=65a9c5d2&hm=8d3df6ba7137fc1e2518eb9df6c9a83b0388cc756521422c31f9c0178f97e499&)
 
