@@ -33,6 +33,8 @@ public class Flim {
     private List<Season> seasons;
     @ManyToMany
     private Set<Tag> tags;
+    @ManyToMany(mappedBy = "flims")
+    private Set<Users> users;
     @ManyToOne
     private Country country;
 }
