@@ -69,7 +69,7 @@
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
                         All Anime
-                        <a class="btn btn-primary align-content-lg-start" href="#">Add new</a>
+                        <a class="btn btn-primary align-content-lg-start" href="/admin/add-new">Add new</a>
 
                     </div>
                     <div class="card-body">

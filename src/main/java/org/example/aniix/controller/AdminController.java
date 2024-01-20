@@ -20,4 +20,8 @@ public class AdminController {
         model.addAttribute("flim",flimService.getAll());
         return "admin/index.jsp";
     }
+    @GetMapping("/add-new")
+    public String addFlimPage(){
+        return "admin/AddAnime.jsp";
+    }
 }

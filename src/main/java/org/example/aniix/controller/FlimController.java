@@ -23,7 +23,6 @@ public class FlimController {
     }
     @GetMapping("/{flimId}/watch/{episodeId}")
     public String wacthFlim(@PathVariable("flimId")Long flimId,@PathVariable("episodeId")Long episodeId,Model model){
-        System.out.println("dit me may");
         model.addAttribute("flim",flimService.getById(flimId));
         model.addAttribute("episode",episodeService.getById(episodeId));
         return "FlimDetails/watching.jsp";
