@@ -42,7 +42,18 @@ Online Anime Streaming web
   
 ![App Screenshot](https://cdn.discordapp.com/attachments/1197135161746272316/1197702980770738256/image.png?ex=65bc3ad2&is=65a9c5d2&hm=8d3df6ba7137fc1e2518eb9df6c9a83b0388cc756521422c31f9c0178f97e499&)
 
+
+
 - Admin Page:
   
 ![App Screenshot](https://cdn.discordapp.com/attachments/1197135161746272316/1197704400387452958/image.png?ex=65bc3c25&is=65a9c725&hm=edab928fad4baf028f460df0ef028c8c70f9a01f78344a60d88b1db4bcf50f16&)
+
+
+- Login page:
+  
+![App Screenshot](https://cdn.discordapp.com/attachments/1197135161746272316/1198113594039083008/image.png?ex=65bdb93c&is=65ab443c&hm=704d5af3d961318d5208a42a8875afdd5d151537a365a014630a32801e6ac70d&)
+
+- Signup page:
+  
+![App Screenshot](https://cdn.discordapp.com/attachments/1197135161746272316/1198113697286078504/image.png?ex=65bdb955&is=65ab4455&hm=a3e3e7340841ceb5d66c9c25ef59b607d4ff87c3b18ea2941fef3004ad6caac2&)
 
