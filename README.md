@@ -17,6 +17,14 @@ Online Anime Streaming web
 - Jquery
 
 
+## Design pattern
+- Three Tier (Three Layer) Architecture:  
+![App Screenshot](https://1.bp.blogspot.com/-PIbPpPIzkIA/Xwfy3JShvQI/AAAAAAAAH_M/O8N2xbXfqtsGH7jQdfpC9f3GvtKYvT_CACLcBGAsYHQ/s1600/Screenshot%2B06-27-2020%2B22.27.59.png)
+- DTO design pattern:  
+![App Screenshot](https://shareprogramming.net/wp-content/uploads/2021/09/layers-4.svg)
+
+
+
 ## Screenshots
 - Home Page:
   
