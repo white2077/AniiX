@@ -39,8 +39,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**")
                 .hasAuthority("ADMIN")
                 .and()
-                .formLogin().loginPage("/login")
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .failureForwardUrl("/login")
+                .permitAll()
                 .and()
-                .httpBasic();
+                .logout().logoutSuccessUrl("/login")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .and()
+                .sessionManagement()
+                .maximumSessions(1)
+                .expiredUrl("/");
     }
 }

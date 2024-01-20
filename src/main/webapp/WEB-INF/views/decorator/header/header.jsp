@@ -1,4 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
+
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal" var="user"/>
+</sec:authorize>
+
+
 <header class="header" ng-app="category" ng-controller="categoryController">
     <div class="header__wrap">
         <div class="container">
@@ -18,7 +26,6 @@
                                 <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
 
                                 <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">
-                                    <li><a href="index.html">Home slideshow bg</a></li>
                                     <li><a href="index2.html">Home static bg</a></li>
                                 </ul>
                             </li>
@@ -37,16 +44,27 @@
                             <li class="header__nav-item">
                                 <a href="faq.html" class="header__nav-link">Help</a>
                             </li>
-
+                            <sec:authorize access="hasAnyAuthority('ADMIN')">
+                                <li class="header__nav-item">
+                                    <a href="/admin/admin-page" class="header__nav-link">Go to admin page</a>
+                                </li>
+                            </sec:authorize>
                             <!-- dropdown -->
                             <li class="dropdown header__nav-item">
                                 <a class="dropdown-toggle header__nav-link header__nav-link--more" href="#" role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon ion-ios-more"></i></a>
 
                                 <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="signin.html">Sign In</a></li>
-                                    <li><a href="signup.html">Sign Up</a></li>
-                                    <li><a href="404.html">404 Page</a></li>
+                                       <c:choose>
+                                           <c:when test="${user != null}">
+                                               <li><a href="/logout">Logout</a></li>
+                                           </c:when>
+                                           <c:otherwise>
+                                               <li><a href="/login">Sign In</a></li>
+                                               <li><a href="/register">Sign Up</a></li>
+                                           </c:otherwise>
+                                       </c:choose>
+                                            <li><a href="about.html">About</a></li>
+                                            <li><a href="404.html">404 Page</a></li>
                                 </ul>
                             </li>
                             <!-- end dropdown -->
@@ -59,10 +77,25 @@
                                 <i class="icon ion-ios-search"></i>
                             </button>
 
-                            <a href="/login" class="header__sign-in">
-                                <i class="icon ion-ios-log-in"></i>
-                                <span>sign in</span>
-                            </a>
+                      <c:choose>
+                          <c:when test="${user != null}">
+                              <li class="dropdown header__nav-item">
+                                  <a class="dropdown-toggle header__nav-link" style="margin-left: 40px" href="#" role="button" id="dropdownUser" data-toggle="dropdown"><i class="fa-solid fa-user" style="color: #ffffff;margin-right: 10px"></i>${user.username}</a>
+
+                                  <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownUser">
+                                      <li><a href="#">View profile</a></li>
+                                      <li><a href="#">My favourite</a></li>
+                                      <li><a href="/logout">Logout</a></li>
+                                  </ul>
+                              </li>
+                          </c:when>
+                          <c:otherwise>
+                              <a href="/login" class="header__sign-in">
+                                  <i class="icon ion-ios-log-in"></i>
+                                  <span>sign in</span>
+                              </a>
+                          </c:otherwise>
+                      </c:choose>
                         </div>
                         <!-- end header auth -->
 
