@@ -57,6 +57,7 @@ public class AdminController {
     @PostMapping("/upload-flim")
     public String addAFlim(@Valid @ModelAttribute FlimFormValidator flimFormValidator, BindingResult bindingResult){
         System.out.println(bindingResult);
+        System.out.println(flimFormValidator.toString());
         return "redirect:/admin/admin-page";
     }
 }

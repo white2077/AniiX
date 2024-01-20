@@ -14,14 +14,14 @@ import java.util.Set;
 public class FlimFormValidator {
     private String description;
     @NotEmpty
-    @Size(min = 2,message = "dit me may")
+    @Size(min = 2,message = "Name")
     private String name;
     private int releaseYear;
     private Boolean status;
     private Boolean type;
     private Timestamp uploadDate;
     private String thumbnail;
-    private Set<String> categories;
-    private String country;
-    private Set<String> tags;
+    private Long country;
+    private Set<Long> categories;
+    private Set<Long> tags;
 }

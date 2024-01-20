@@ -33,6 +33,10 @@
                         <form:input path="name" class="form-control"/>
                     </div>
                     <div class="mb-3">
+                        <label class="form-label">Release year:</label>
+                        <form:input path="releaseYear" class="form-control"/>
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label">Categories:</label>
                         <div class="form-check">
                             <form:checkboxes path="categories" items="${categories}" itemLabel="name" itemValue="id" />
