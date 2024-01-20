@@ -121,8 +121,8 @@
                                     </td>
                                     <td>${x.releaseYear}</td>
                                     <td>${x.uploadDate}</td>
-                                    <td><a href="#">Edit</a></td>
-                                    <td>    <a href="#">Delete</a></td>
+                                    <td><a href="/admin/update-flim/${x.id}">Edit</a></td>
+                                    <td><a href="#">Delete</a></td>
                                 </tr>
                             </c:forEach>
                             </tbody>

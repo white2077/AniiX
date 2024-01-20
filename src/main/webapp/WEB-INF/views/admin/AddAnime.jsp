@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: buidu
@@ -24,50 +26,42 @@
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">Upload an anime</li>
                 </ol>
-                <form action="#" method="" class="form-control">
+
+                <form:form action="/admin/upload-flim" method="post" modelAttribute="flim" class="form-control">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name:</label>
-                        <input type="text" class="form-control" id="name" placeholder="anime name">
+                        <form:input path="name" class="form-control"/>
                     </div>
                     <div class="mb-3">
-                        <label for="category" class="form-label">Categories:</label>
+                        <label class="form-label">Categories:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="ngu vcl" id="category">
-                            <label class="form-check-label" for="category">
-                                Fantasy
-                            </label>
+                            <form:checkboxes path="categories" items="${categories}" itemLabel="name" itemValue="id" />
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="tag" class="form-label">Tags:</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="ngu vcl" id="tag">
-                            <label class="form-check-label" for="tag">
-                                Fantasy
-                            </label>
+                        <label class="form-label">Tags:</label>
+                        <div class="form-check d-flex">
+                            <form:checkboxes path="tags" items="${tagsList}" itemLabel="tag" itemValue="id" />
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="desc" class="form-label">Desc:</label>
-                        <textarea class="form-control" id="desc" rows="3"></textarea>
+                        <form:textarea class="form-control" id="desc" rows="3" path="description"/>
                     </div>
                     <div class="mb-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Country</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                        <form:select path="country" cssClass="form-select">
+                            <form:options items="${countryList}" itemValue="id" itemLabel="name"/>
+                        </form:select>
                     </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Default file input example</label>
                         <input class="form-control" type="file" id="formFile">
                     </div>
                     <div class="d-flex justify-content-lg-end">
-                        <button type="button" class="btn btn-success align-items-end me-2">Submit</button>
+                        <button type="submit" class="btn btn-success align-items-end me-2">Submit</button>
                         <button type="button" class="btn btn-danger">Cancel</button>
                     </div>
-                </form>
+                </form:form>
             </div>
         </main>
 
