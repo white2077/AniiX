@@ -105,7 +105,7 @@
                             <tbody>
                             <c:forEach items="${flim}" var="x">
                                 <tr>
-                                    <td><img src="${x.thumbnail}" width="50vh" alt="" srcset=""></td>
+                                    <td><img src="/flim-image/${x.thumbnail}" width="50vh" alt="" srcset=""></td>
                                     <td>${x.name}</td>
                                     <td>${x.seasons.size()}</td>
                                     <td>${x.country.name}</td>
