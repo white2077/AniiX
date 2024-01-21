@@ -10,12 +10,11 @@ Online Anime Streaming web
 - Spring Security
 - Spring Web MVC
 - Spring Data JPA
+- Spring validation
 - Java Server Page
 - Angular js
 - SQL Server
 - Boostrap 
-- Jquery
-
 
 ## Design pattern
 - Three Tier (Three Layer) Architecture:  
