@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
+
 @Service
 public class SeasonService implements ISeasonService {
     @Autowired
@@ -48,5 +50,10 @@ public class SeasonService implements ISeasonService {
     @Override
     public void delete(Long id) {
         repository.findById(id);
+    }
+
+    @Override
+    public List<SeasonDTO> getAllById(Set<Long> ids) {
+        return null;
     }
 }

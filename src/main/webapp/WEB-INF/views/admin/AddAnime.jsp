@@ -27,10 +27,13 @@
                     <li class="breadcrumb-item active">Upload an anime</li>
                 </ol>
 
-                <form:form action="/admin/upload-flim" method="post" modelAttribute="flim" class="form-control">
+                <form:form action="/admin/upload-flim" method="post"
+                           modelAttribute="flim" class="form-control"
+                           enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name:</label>
                         <form:input path="name" class="form-control"/>
+                        <form:errors path="name" element="li" delimiter=";"/>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Release year:</label>
@@ -41,6 +44,7 @@
                         <div class="form-check">
                             <form:checkboxes path="categories" items="${categories}" itemLabel="name" itemValue="id" />
                         </div>
+                        <form:errors path="categories"/>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Tags:</label>
@@ -59,7 +63,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Default file input example</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <input class="form-control" type="file" name="thumbnail" id="formFile">
                     </div>
                     <div class="d-flex justify-content-lg-end">
                         <button type="submit" class="btn btn-success align-items-end me-2">Submit</button>

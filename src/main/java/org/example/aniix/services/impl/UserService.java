@@ -1,8 +1,6 @@
 package org.example.aniix.services.impl;
 
-import org.example.aniix.dtos.SeasonDTO;
 import org.example.aniix.dtos.UsersDTO;
-import org.example.aniix.entities.Season;
 import org.example.aniix.entities.Users;
 import org.example.aniix.repositories.IUsersRepository;
 import org.example.aniix.services.IUserService;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 @Service
 public class UserService implements IUserService {
@@ -50,5 +49,10 @@ public class UserService implements IUserService {
     @Override
     public void delete(Long id) {
         repository.findById(id);
+    }
+
+    @Override
+    public List<UsersDTO> getAllById(Set<Long> ids) {
+        return null;
     }
 }

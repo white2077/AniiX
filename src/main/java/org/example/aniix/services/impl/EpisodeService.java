@@ -1,9 +1,7 @@
 package org.example.aniix.services.impl;
 
 import org.example.aniix.dtos.EpisodeDTO;
-import org.example.aniix.dtos.SeasonDTO;
 import org.example.aniix.entities.Episode;
-import org.example.aniix.entities.Season;
 import org.example.aniix.repositories.IEpisodeRepository;
 import org.example.aniix.services.IEpisodeService;
 import org.modelmapper.ModelMapper;
@@ -12,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
+
 @Service
 public class EpisodeService implements IEpisodeService {
     @Autowired
@@ -50,5 +50,10 @@ public class EpisodeService implements IEpisodeService {
     @Override
     public void delete(Long id) {
         repository.findById(id);
+    }
+
+    @Override
+    public List<EpisodeDTO> getAllById(Set<Long> ids) {
+        return null;
     }
 }

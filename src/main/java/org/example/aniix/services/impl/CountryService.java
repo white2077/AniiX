@@ -1,11 +1,8 @@
 package org.example.aniix.services.impl;
 
 import org.example.aniix.dtos.CountryDTO;
-import org.example.aniix.dtos.SeasonDTO;
 import org.example.aniix.entities.Country;
-import org.example.aniix.entities.Season;
 import org.example.aniix.repositories.ICountryRespository;
-import org.example.aniix.repositories.ISeasonRepository;
 import org.example.aniix.services.ICountryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 @Service
 public class CountryService implements ICountryService {
@@ -52,5 +50,10 @@ public class CountryService implements ICountryService {
     @Override
     public void delete(Long id) {
         repository.findById(id);
+    }
+
+    @Override
+    public List<CountryDTO> getAllById(Set<Long> ids) {
+        return null;
     }
 }

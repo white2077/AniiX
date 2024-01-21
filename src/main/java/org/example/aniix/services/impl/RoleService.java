@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
+
 @Service
 public class RoleService implements IRoleService {
     @Autowired
@@ -47,5 +49,10 @@ public class RoleService implements IRoleService {
     @Override
     public void delete(Long id) {
         repository.findById(id);
+    }
+
+    @Override
+    public List<RoleDTO> getAllById(Set<Long> ids) {
+        return null;
     }
 }

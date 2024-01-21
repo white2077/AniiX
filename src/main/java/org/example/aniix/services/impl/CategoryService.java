@@ -1,6 +1,7 @@
 package org.example.aniix.services.impl;
 
 import org.example.aniix.dtos.CategoryDTO;
+import org.example.aniix.dtos.TagDTO;
 import org.example.aniix.entities.Category;
 import org.example.aniix.repositories.ICategoryRepository;
 import org.example.aniix.services.ICategoryService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 @Service
 public class CategoryService implements ICategoryService {
@@ -50,5 +52,13 @@ public class CategoryService implements ICategoryService {
     @Override
     public void delete(Long id) {
         repository.findById(id);
+    }
+
+    @Override
+    public List<CategoryDTO> getAllById(Set<Long> ids) {
+        return repository.findAllById(ids)
+                .stream()
+                .map(category -> modelMapper.map(category, CategoryDTO.class))
+                .toList();
     }
 }

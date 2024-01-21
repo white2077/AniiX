@@ -169,7 +169,7 @@
                         <div class="row">
                             <div class="col-12 col-sm-4">
                                 <div class="card__cover">
-                                    <img src="${x.thumbnail}" alt="">
+                                    <img src="/flim-image/${x.thumbnail}" alt="">
                                     <a href="/flim/${x.id}" class="card__play">
                                         <i class="icon ion-ios-play"></i>
                                     </a>

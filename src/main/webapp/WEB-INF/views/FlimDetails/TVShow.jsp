@@ -15,7 +15,7 @@
 
 <section class="section details">
     <!-- details background -->
-    <div class="details__bg" data-bg="${flim.thumbnail}"></div>
+    <div class="details__bg" data-bg="/flim-image/${flim.thumbnail}"></div>
     <!-- end details background -->
 
     <!-- details content -->
@@ -34,7 +34,7 @@
                         <!-- card cover -->
                         <div class="col-12 col-sm-4 col-md-4 col-lg-3 col-xl-3">
                             <div class="card__cover">
-                                <img src="${flim.thumbnail}" alt="">
+                                <img src="/flim-image/${flim.thumbnail}" alt="">
                             </div>
                         </div>
                         <!-- end card cover -->

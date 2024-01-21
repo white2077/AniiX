@@ -1,6 +1,7 @@
 package org.example.aniix.services.impl;
 
 import org.example.aniix.dtos.FlimDTO;
+import org.example.aniix.dtos.UploadFlimDTO;
 import org.example.aniix.entities.Flim;
 import org.example.aniix.repositories.ICategoryRepository;
 import org.example.aniix.repositories.IFlimRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 @Service
 public class FlimService implements IFlimService {
@@ -55,6 +57,11 @@ public class FlimService implements IFlimService {
     }
 
     @Override
+    public List<FlimDTO> getAllById(Set<Long> ids) {
+        return null;
+    }
+
+    @Override
     public List<FlimDTO> getAllByCategoryId(Long id) {
        return categoryRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Not Found Category :(( "))
@@ -62,5 +69,13 @@ public class FlimService implements IFlimService {
                 .stream()
                 .map(flim -> modelMapper.map(flim, FlimDTO.class))
                 .toList();
+    }
+
+    @Override
+    public UploadFlimDTO upload(UploadFlimDTO uploadFlimDTO) {
+        return modelMapper
+                .map(
+                        flimRepository.save(modelMapper.map(uploadFlimDTO, Flim.class)), UploadFlimDTO.class
+                );
     }
 }
