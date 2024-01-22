@@ -32,6 +32,7 @@ public class AdminController {
     @Autowired
     IStorageService storageService;
     private UploadFlimDTO uploadFlimDTO;
+    private FlimFormValidator flimFormValidator;
 
     @ModelAttribute("categories")
     public List<CategoryDTO> categoryDTOS() {
@@ -56,6 +57,8 @@ public class AdminController {
 
     @GetMapping("/add-new")
     public String addFlimPage(Model model) {
+        model.addAttribute("uploadStatus", 1);
+
         model.addAttribute("title", "Add new");
         model.addAttribute("countryList", countryService.getAll());
         model.addAttribute("flim", new FlimFormValidator());
@@ -71,6 +74,7 @@ public class AdminController {
         model.addAttribute("flim", uploadFlimDTO);
         model.addAttribute("title", uploadFlimDTO.getName());
         return "admin/UploadAnime.jsp";
+
     }
 
     @PostMapping("/upload-flim")
@@ -80,17 +84,21 @@ public class AdminController {
             , BindingResult bindingResult, Model model,
             @RequestParam("country") Long country) {
         try {
+            this.flimFormValidator = flimFormValidator;
             uploadFlimDTO = new UploadFlimDTO();
             flimService.upload(bindFlimData(flimFormValidator, country, uploadFlimDTO, true));
+            model.addAttribute("uploadStatus", 2);
         } catch (Exception e) {
-            model.addAttribute("flim",flimFormValidator);
-            model.addAttribute("check",true);
+            model.addAttribute("uploadStatus", 3);
+            model.addAttribute("flim", this.flimFormValidator);
+            model.addAttribute("check", true);
             if (bindingResult.hasErrors()) {
                 System.out.println(bindingResult);
                 return "admin/UploadAnime.jsp";
             }
         }
-        return "redirect:/admin/add-new";
+        model.addAttribute("flim", new FlimFormValidator());
+        return "admin/UploadAnime.jsp";
     }
 
     @PutMapping("/update-flim")
@@ -100,11 +108,21 @@ public class AdminController {
             , @RequestParam("thumbnail") MultipartFile thumbnail
             , @RequestParam("country") Long country) {
         model.addAttribute("check", false);
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("flim", uploadFlimDTO);
-            return "admin/UploadAnime.jsp";
+        try {
+            if (!bindingResult.hasErrors()) {
+                flimService.upload(bindFlimData(flimFormValidator, country, uploadFlimDTO, false));
+                model.addAttribute("uploadStatus", 2);
+            }
+            else {
+                model.addAttribute("uploadStatus", 3);
+                return "redirect:/admin/update-flim/"+uploadFlimDTO.getId();
+            }
+        } catch (Exception e) {
+            this.flimFormValidator = flimFormValidator;
+            model.addAttribute("uploadStatus", 3);
+            model.addAttribute("flim", this.flimFormValidator);
+            return "/admin/UploadAnime.jsp";
         }
-        flimService.upload(bindFlimData(flimFormValidator, country, uploadFlimDTO, false));
         return "redirect:/admin/admin-page";
     }
 

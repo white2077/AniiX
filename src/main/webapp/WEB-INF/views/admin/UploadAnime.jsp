@@ -27,6 +27,20 @@
                     <li class="breadcrumb-item active">${title}</li>
                 </ol>
                 <c:choose>
+                    <c:when test="${uploadStatus==3}">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </c:when>
+                    <c:when test="${uploadStatus==2}">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Congrats!</strong> Upload complete :).
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </c:when>
+                </c:choose>
+                <c:choose>
                     <c:when test="${check}">
                         <form:form action="/admin/upload-flim" method="post"
                                    modelAttribute="flim" class="form-control"

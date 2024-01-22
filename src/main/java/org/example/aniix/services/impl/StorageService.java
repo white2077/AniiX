@@ -2,11 +2,10 @@ package org.example.aniix.services.impl;
 
 import org.apache.commons.io.FilenameUtils;
 import org.example.aniix.services.IStorageService;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -15,7 +14,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.UUID;
-import java.util.stream.Stream;
+import video.api.client.ApiVideoClient;
+import video.api.client.api.ApiException;
+import video.api.client.api.models.Video;
+import video.api.client.api.models.VideoCreationPayload;
 
 @Service
 public class StorageService implements IStorageService {
@@ -75,4 +77,38 @@ public class StorageService implements IStorageService {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public String uploadVideo(MultipartFile videoUp) {
+        ApiVideoClient apiVideoClient = new ApiVideoClient(API_KEY);
+        try {
+            File file = convert(videoUp);
+            Video video = apiVideoClient.videos().create(new VideoCreationPayload().title("my video"));
+            video = apiVideoClient.videos().upload(video.getVideoId(),file);
+            deleteTempFile(file);
+            System.out.println(video);
+            return video.getVideoId();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountApi#get");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getMessage());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return ":)";
+    }
+    private File convert(MultipartFile multipartFile) throws IOException {
+        File tempFile = File.createTempFile("temp", "."+FilenameUtils.getExtension(multipartFile.getOriginalFilename()));
+        multipartFile.transferTo(tempFile);
+        return tempFile;
+    }
+    private void deleteTempFile(File file) {
+        if (file != null && file.exists()) {
+            file.delete();
+            System.out.println("Đã xóa tệp: " + file.getAbsolutePath());
+        }
+    }
+
 }
