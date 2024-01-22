@@ -78,4 +78,12 @@ public class FlimService implements IFlimService {
                         flimRepository.save(modelMapper.map(uploadFlimDTO, Flim.class)), UploadFlimDTO.class
                 );
     }
+
+    @Override
+    public UploadFlimDTO getFlimForUpload(Long id) {
+        return modelMapper
+                .map(flimRepository.findById(id).orElseThrow(
+                        () -> new NoSuchElementException("Not Found")
+                ), UploadFlimDTO.class);
+    }
 }

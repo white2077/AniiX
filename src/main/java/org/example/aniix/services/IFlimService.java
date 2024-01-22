@@ -8,4 +8,7 @@ import java.util.List;
 public interface IFlimService extends ICrudService<FlimDTO,Long> {
     List<FlimDTO> getAllByCategoryId(Long id);
     UploadFlimDTO upload(UploadFlimDTO uploadFlimDTO);
+    UploadFlimDTO getFlimForUpload(Long id);
+
+
 }

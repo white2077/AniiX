@@ -64,17 +64,15 @@ public class StorageService implements IStorageService {
     }
 
     @Override
-    public Stream<Path> loadAll() {
-        return null;
-    }
-
-    @Override
-    public byte[] readFile(String fileName) {
-        return new byte[0];
-    }
-
-    @Override
-    public void deleteAllFile() {
-
+    public void deleteByImageName(String name) {
+        Path filePath = storageFolder.resolve(name);
+        System.out.println(filePath.toAbsolutePath());
+        try {
+            Files.delete(filePath);
+            System.out.println("File deleted successfully: " + name);
+        } catch (IOException e) {
+            System.err.println("Error deleting file: " + name);
+            e.printStackTrace();
+        }
     }
 }
