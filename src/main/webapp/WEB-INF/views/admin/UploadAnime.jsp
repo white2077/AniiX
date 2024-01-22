@@ -64,7 +64,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">Default file input example</label>
-                                <input class="form-control" type="file" name="thumbnail" id="formFile">
+                                <input class="form-control" type="file" accept=".png, .jpg, .jpeg, .bmp" name="thumbnail" id="formFile">
                             </div>
                             <div class="d-flex justify-content-lg-end">
                                 <button type="submit" class="btn btn-success align-items-end me-2">Submit</button>
@@ -73,7 +73,7 @@
                         </form:form>
                     </c:when>
                     <c:otherwise>
-                        <form:form action="/admin/update-flim" method="post"
+                        <form:form action="/admin/update-flim" method="put"
                                    modelAttribute="flim" class="form-control"
                                    enctype="multipart/form-data">
                             <div class="mb-3">
@@ -108,9 +108,11 @@
                                 </form:select>
                             </div>
                             <div class="mb-3">
-                                <label for="formFile" class="form-label">Default file input example</label>
-                                <input class="form-control" type="file" name="thumbnail" id="formFile">
+                                <label for="formFile" class="form-label">Upload thumbnail</label>
+                                <input class="form-control" type="file" accept=".png, .jpg, .jpeg, .bmp" name="thumbnail" id="formFile">
                             </div>
+                            <img src="/flim-image/${flim.thumbnail}" width="200px" height="18vh" class="img-thumbnail" alt="...">
+
                             <div class="d-flex justify-content-lg-end">
                                 <button type="submit" class="btn btn-success align-items-end me-2">Submit</button>
                                 <button type="button" class="btn btn-danger">Cancel</button>
@@ -130,4 +132,5 @@
 
 <%@include file="../decorator/scrpit/AdminScprit.jsp"%>
 </body>
+
 </html>

@@ -53,7 +53,7 @@ public class FlimService implements IFlimService {
 
     @Override
     public void delete(Long id) {
-        flimRepository.findById(id);
+        flimRepository.deleteById(id);
     }
 
     @Override

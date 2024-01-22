@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: buidu
@@ -11,16 +12,16 @@
 <html lang="en">
 <head>
     <title>Dashboard - SB Admin</title>
-    <%@include file="../decorator/head/AdminHead.jsp"%>
+    <%@include file="../decorator/head/AdminHead.jsp" %>
 </head>
-<body class="sb-nav-fixed">
-<%@include file="../decorator/header/AdminHeader.jsp"%>
+<body class="sb-nav-fixed" ng-app="myApp">
+<%@include file="../decorator/header/AdminHeader.jsp" %>
 
 <div id="layoutSidenav">
-    <%@include file="../decorator/SideBar/SideBar.jsp"%>
+    <%@include file="../decorator/SideBar/SideBar.jsp" %>
 
     <div id="layoutSidenav_content">
-        <main>
+        <main ng-app="myApp" >
             <div class="container-fluid px-4">
                 <h1 class="mt-4">Dashboard</h1>
                 <ol class="breadcrumb mb-4">
@@ -72,13 +73,13 @@
                         <a class="btn btn-primary align-content-lg-start" href="/admin/add-new">Add new</a>
 
                     </div>
-                    <div class="card-body">
-                        <table id="datatablesSimple">
-                            <thead>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover table-bordered" id="datatablesSimple">
+                            <thead class="table-dark">
                             <tr>
                                 <th>Thumbnail</th>
                                 <th>Name</th>
-                                <th>All seasons</th>
+                                <th>Seasons</th>
                                 <th>Country</th>
                                 <th>Categories</th>
                                 <th>Tags</th>
@@ -92,7 +93,7 @@
                             <tr>
                                 <th>Thumbnail</th>
                                 <th>Name</th>
-                                <th>All seasons</th>
+                                <th>Seasons</th>
                                 <th>Country</th>
                                 <th>Categories</th>
                                 <th>Tags</th>
@@ -121,8 +122,12 @@
                                     </td>
                                     <td>${x.releaseYear}</td>
                                     <td>${x.uploadDate}</td>
-                                    <td><a href="/admin/update-flim/${x.id}">Edit</a></td>
-                                    <td><a href="#">Delete</a></td>
+                                    <td><a href="/admin/update-flim/${x.id}" class="btn btn-primary">Edit</a></td>
+                                    <td>
+                                        <form:form action="/admin/delete-flim/${x.id}" method="delete">
+                                            <input hidden="hidden" name="thumbnail" value="${x.thumbnail}">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form:form></td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -132,14 +137,12 @@
             </div>
         </main>
 
-        <%@include file="../decorator/footer/AdminFooter.jsp"%>
+        <%@include file="../decorator/footer/AdminFooter.jsp" %>
     </div>
 </div>
 
 
-
-
-<%@include file="../decorator/scrpit/AdminScprit.jsp"%>
+<%@include file="../decorator/scrpit/AdminScprit.jsp" %>
 </body>
 </html>
 

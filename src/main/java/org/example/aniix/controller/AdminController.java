@@ -34,15 +34,17 @@ public class AdminController {
     private UploadFlimDTO uploadFlimDTO;
 
     @ModelAttribute("categories")
-    public List<CategoryDTO> categoryDTOS(){
+    public List<CategoryDTO> categoryDTOS() {
         return categoryService.getAll();
     }
+
     @ModelAttribute("tagsList")
-    public List<TagDTO> tagDTOS(){
+    public List<TagDTO> tagDTOS() {
         return tagService.getAll();
     }
+
     @ModelAttribute("countryList")
-    public List<CountryDTO> countryDTOS(){
+    public List<CountryDTO> countryDTOS() {
         return countryService.getAll();
     }
 
@@ -54,12 +56,12 @@ public class AdminController {
 
     @GetMapping("/add-new")
     public String addFlimPage(Model model) {
-        model.addAttribute("title","Add new");
+        model.addAttribute("title", "Add new");
         model.addAttribute("countryList", countryService.getAll());
         model.addAttribute("flim", new FlimFormValidator());
         model.addAttribute("tagsList", tagService.getAll());
         model.addAttribute("categories", categoryService.getAll());
-        model.addAttribute("check",true);
+        model.addAttribute("check", true);
         return "admin/UploadAnime.jsp";
     }
 
@@ -67,9 +69,10 @@ public class AdminController {
     public String updatePage(@PathVariable("id") Long id, Model model) {
         uploadFlimDTO = flimService.getFlimForUpload(id);
         model.addAttribute("flim", uploadFlimDTO);
-        model.addAttribute("title",uploadFlimDTO.getName());
+        model.addAttribute("title", uploadFlimDTO.getName());
         return "admin/UploadAnime.jsp";
     }
+
     @PostMapping("/upload-flim")
     public String addAFlim(
             @Valid
@@ -78,37 +81,45 @@ public class AdminController {
             @RequestParam("country") Long country) {
         try {
             uploadFlimDTO = new UploadFlimDTO();
-            flimService.upload(bindFlimData(flimFormValidator,country,uploadFlimDTO,true));
+            flimService.upload(bindFlimData(flimFormValidator, country, uploadFlimDTO, true));
         } catch (Exception e) {
+            model.addAttribute("flim",flimFormValidator);
+            model.addAttribute("check",true);
             if (bindingResult.hasErrors()) {
-                model.addAttribute("countryList", countryService.getAll());
-                model.addAttribute("flim", new FlimDTO());
-                model.addAttribute("tagsList", tagService.getAll());
-                model.addAttribute("categories", categoryService.getAll());
+                System.out.println(bindingResult);
                 return "admin/UploadAnime.jsp";
             }
         }
         return "redirect:/admin/add-new";
     }
-    @PostMapping("/update-flim")
+
+    @PutMapping("/update-flim")
     public String updateFlim(Model model
             , @Valid FlimFormValidator flimFormValidator
             , BindingResult bindingResult
             , @RequestParam("thumbnail") MultipartFile thumbnail
-            ,@RequestParam("country") Long country){
-        model.addAttribute("check",false);
-        if (bindingResult.hasErrors()){
-            model.addAttribute("flim",uploadFlimDTO);
+            , @RequestParam("country") Long country) {
+        model.addAttribute("check", false);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("flim", uploadFlimDTO);
             return "admin/UploadAnime.jsp";
         }
-        flimService.upload(bindFlimData(flimFormValidator,country,uploadFlimDTO,false));
+        flimService.upload(bindFlimData(flimFormValidator, country, uploadFlimDTO, false));
+        return "redirect:/admin/admin-page";
+    }
+
+    @DeleteMapping("/delete-flim/{id}")
+    public String deleteFlim(@PathVariable("id") Long id, @RequestParam("thumbnail") String thumbnail) {
+        flimService.delete(id);
+        if (!thumbnail.isEmpty()) storageService.deleteByImageName(thumbnail);
+
         return "redirect:/admin/admin-page";
     }
 
     private UploadFlimDTO bindFlimData(
             FlimFormValidator flimFormValidator
-            ,Long country
-            , UploadFlimDTO bind,boolean type){
+            , Long country
+            , UploadFlimDTO bind, boolean type) {
         Set<CategoryDTO> categoryDTOS = new HashSet<>(categoryService.getAllById(flimFormValidator.getCategories()));
         Set<TagDTO> tagDTOS = new HashSet<>(tagService.getAllById(flimFormValidator.getTags()));
         bind.setName(flimFormValidator.getName());
@@ -117,15 +128,12 @@ public class AdminController {
         bind.setCountry(countryService.getById(country));
         bind.setType(true);
         bind.setDescription(flimFormValidator.getDescription());
-        if (type){
+        if (type) {
             bind.setThumbnail(storageService.storeFile(flimFormValidator.getThumbnail()));
-        }
-        else{
-            if (flimFormValidator.getThumbnail().isEmpty()){
+        } else {
+            if (flimFormValidator.getThumbnail().isEmpty()) {
                 bind.setThumbnail(bind.getThumbnail());
-            }
-            else
-            {
+            } else {
                 storageService.deleteByImageName(bind.getThumbnail());
                 bind.setThumbnail(storageService.storeFile(flimFormValidator.getThumbnail()));
             }
@@ -136,4 +144,5 @@ public class AdminController {
         System.out.println(bind);
         return bind;
     }
+
 }
