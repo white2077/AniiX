@@ -90,7 +90,7 @@
                             </div>
                         </form:form>
                     </c:when>
-                    <c:otherwise>
+                    <c:when test="${!check}">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="anime-tab" data-bs-toggle="tab"
@@ -208,7 +208,7 @@
                                 </div>
                             </div>
                         </div>
-                    </c:otherwise>
+                    </c:when>
                 </c:choose>
             </div>
         </main>

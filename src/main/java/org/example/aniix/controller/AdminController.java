@@ -94,14 +94,17 @@ public class AdminController {
             this.flimFormValidator = flimFormValidator;
             uploadFlimDTO = new UploadFlimDTO();
             flimService.upload(bindFlimData(flimFormValidator, country, uploadFlimDTO, true));
+//            this.seasonFormValidator = new SeasonFormValidator();
             model.addAttribute("uploadStatus", 2);
+//            model.addAttribute("season",this.seasonFormValidator);
+            model.addAttribute("check", true);
         } catch (Exception e) {
             model.addAttribute("uploadStatus", 3);
             model.addAttribute("flim", this.flimFormValidator);
             model.addAttribute("check", true);
             if (bindingResult.hasErrors()) {
                 System.out.println(bindingResult);
-                return "admin/UploadAnime.jsp";
+                return "/admin/UploadAnime.jsp";
             }
         }
         model.addAttribute("flim", new FlimFormValidator());
@@ -119,6 +122,7 @@ public class AdminController {
             if (!bindingResult.hasErrors()) {
                 flimService.upload(bindFlimData(flimFormValidator, country, uploadFlimDTO, false));
                 model.addAttribute("uploadStatus", 2);
+                flimFormValidator = new FlimFormValidator();
             }
             else {
                 model.addAttribute("uploadStatus", 3);
