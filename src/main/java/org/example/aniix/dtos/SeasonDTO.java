@@ -13,8 +13,8 @@ import java.util.List;
 public class SeasonDTO {
     private Long id;
     private String seasonName;
-    private List<EpisodeDTO> episodes;
     private Integer releaseYear;
     private Timestamp uploadDate;
     private Boolean status;
+    private List<EpisodeDTO> episodes;
 }

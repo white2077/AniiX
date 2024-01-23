@@ -98,4 +98,13 @@ public class FlimService implements IFlimService {
         return modelMapper
                 .map(seasonRepository.save(modelMapper.map(uploadSeasonDTO, Season.class)), UploadFlimDTO.class);
     }
+
+    @Override
+    public FlimDTO getBySeasonId(Long id) {
+        return modelMapper
+                .map(seasonRepository
+                                .findById(id).orElseThrow(() -> new NoSuchElementException("Not found this season"))
+                                .getFlim()
+                        , FlimDTO.class);
+    }
 }

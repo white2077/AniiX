@@ -21,7 +21,7 @@
     <!-- details content -->
     <div class="container">
         <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 50px">
-            <iframe class="embed-responsive-item" width="100%" height="500vh" src="${episode.linkFlim}" frameborder="0" scrolling="0" allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" width="100%" height="500vh" src="https://embed.api.video/vod/${episode.linkFlim}" frameborder="0" scrolling="0" allowfullscreen></iframe>
         </div>
 
         <div class="row">

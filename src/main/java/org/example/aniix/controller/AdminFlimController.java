@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
@@ -22,7 +21,7 @@ import java.util.Set;
 @Controller
 @RequestMapping("/admin")
 
-public class AdminController {
+public class AdminFlimController {
     @Autowired
     private IFlimService flimService;
     @Autowired
@@ -158,6 +157,12 @@ public class AdminController {
         flimService.addSeason(dto);
         return "redirect:/admin/update-flim/"+uploadFlimDTO.getId();
     }
+
+
+
+
+
+
     private UploadFlimDTO bindFlimData(
             FlimFormValidator flimFormValidator
             , Long country

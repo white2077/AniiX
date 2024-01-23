@@ -1,16 +1,16 @@
 package org.example.aniix.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class EpisodeDTO {
     private Long id;
     private String linkFlim;
     private Boolean status;
     private Timestamp uploadDate;
+    private SeasonDTO season;
 }

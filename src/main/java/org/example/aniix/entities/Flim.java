@@ -27,6 +27,7 @@ public class Flim {
     private Timestamp uploadDate;
     private boolean status;
 
+
     @ManyToMany
     private List<Category> categories;
     @OneToMany(mappedBy = "flim")

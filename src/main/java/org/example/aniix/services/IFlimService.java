@@ -11,4 +11,5 @@ public interface IFlimService extends ICrudService<FlimDTO,Long> {
     UploadFlimDTO upload(UploadFlimDTO uploadFlimDTO);
     UploadFlimDTO getFlimForUpload(Long id);
     UploadFlimDTO addSeason(UploadSeasonDTO uploadSeasonDTO);
+    FlimDTO getBySeasonId(Long id);
 }

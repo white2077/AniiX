@@ -198,7 +198,7 @@
                                                 <td>${x.episodes.size()}</td>
                                                 <td>${x.releaseYear}</td>
                                                 <td>${x.uploadDate}</td>
-                                                <td><a href="#" class="btn btn-success">Add or Edit</a></td>
+                                                <td><a href="/admin/add-episode/season/${x.id}" class="btn btn-success">Click :)</a></td>
                                                 <td><a href="#" class="btn btn-success">Edit</a></td>
                                                 <td><a href="#" class="btn btn-success">Delete</a></td>
                                             </tr>
