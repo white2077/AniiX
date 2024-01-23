@@ -18,6 +18,7 @@ public class Episode {
     @Column(columnDefinition = "nvarchar(2000)")
     private String linkFlim;
     private Timestamp uploadDate;
+    private Timestamp updateDate;
     private boolean status;
     @ManyToOne
     private Season season;

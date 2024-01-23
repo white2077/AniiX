@@ -3,12 +3,14 @@ package org.example.aniix.controller;
 import org.example.aniix.dtos.*;
 import org.example.aniix.services.*;
 import org.example.aniix.validators.FlimFormValidator;
+import org.example.aniix.validators.SeasonFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
@@ -33,6 +35,8 @@ public class AdminController {
     IStorageService storageService;
     private UploadFlimDTO uploadFlimDTO;
     private FlimFormValidator flimFormValidator;
+    private SeasonFormValidator seasonFormValidator;
+    private UploadSeasonDTO uploadSeasonDTO;
 
     @ModelAttribute("categories")
     public List<CategoryDTO> categoryDTOS() {
@@ -58,7 +62,6 @@ public class AdminController {
     @GetMapping("/add-new")
     public String addFlimPage(Model model) {
         model.addAttribute("uploadStatus", 1);
-
         model.addAttribute("title", "Add new");
         model.addAttribute("countryList", countryService.getAll());
         model.addAttribute("flim", new FlimFormValidator());
@@ -71,8 +74,12 @@ public class AdminController {
     @GetMapping("/update-flim/{id}")
     public String updatePage(@PathVariable("id") Long id, Model model) {
         uploadFlimDTO = flimService.getFlimForUpload(id);
+        seasonFormValidator = new SeasonFormValidator();
+        seasonFormValidator.setSeasonName(" Season "+(flimService.getById(id).getSeasons().size()+1)+": "+uploadFlimDTO.getName());
         model.addAttribute("flim", uploadFlimDTO);
         model.addAttribute("title", uploadFlimDTO.getName());
+        model.addAttribute("season",seasonFormValidator);
+        model.addAttribute("allSeason",flimService.getById(id).getSeasons());
         return "admin/UploadAnime.jsp";
 
     }
@@ -133,7 +140,20 @@ public class AdminController {
 
         return "redirect:/admin/admin-page";
     }
-
+    @PostMapping("/add-season")
+    public String addFlimSeason(
+            @Valid SeasonFormValidator flimFormValidator
+            , BindingResult bindingResult){
+        System.out.println(bindingResult);
+        UploadSeasonDTO dto = new UploadSeasonDTO();
+        dto.setFlim(uploadFlimDTO);
+        dto.setSeasonName(flimFormValidator.getSeasonName());
+        dto.setStatus(true);
+        dto.setUploadDate(Timestamp.valueOf(LocalDateTime.now()));
+        dto.setReleaseYear(flimFormValidator.getReleaseYear());
+        flimService.addSeason(dto);
+        return "redirect:/admin/update-flim/"+uploadFlimDTO.getId();
+    }
     private UploadFlimDTO bindFlimData(
             FlimFormValidator flimFormValidator
             , Long country

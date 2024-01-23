@@ -2,9 +2,12 @@ package org.example.aniix.services.impl;
 
 import org.example.aniix.dtos.FlimDTO;
 import org.example.aniix.dtos.UploadFlimDTO;
+import org.example.aniix.dtos.UploadSeasonDTO;
 import org.example.aniix.entities.Flim;
+import org.example.aniix.entities.Season;
 import org.example.aniix.repositories.ICategoryRepository;
 import org.example.aniix.repositories.IFlimRepository;
+import org.example.aniix.repositories.ISeasonRepository;
 import org.example.aniix.services.IFlimService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +25,14 @@ public class FlimService implements IFlimService {
     private ModelMapper modelMapper;
     @Autowired
     private ICategoryRepository categoryRepository;
+    @Autowired
+    private ISeasonRepository seasonRepository;
+
     @Override
     public List<FlimDTO> getAll() {
         return flimRepository.findAll()
                 .stream()
-                .map(flim -> modelMapper.map(flim,FlimDTO.class))
+                .map(flim -> modelMapper.map(flim, FlimDTO.class))
                 .toList();
     }
 
@@ -48,7 +54,7 @@ public class FlimService implements IFlimService {
 
     @Override
     public void update(FlimDTO dto) {
-        flimRepository.save(modelMapper.map(dto,Flim.class));
+        flimRepository.save(modelMapper.map(dto, Flim.class));
     }
 
     @Override
@@ -63,7 +69,7 @@ public class FlimService implements IFlimService {
 
     @Override
     public List<FlimDTO> getAllByCategoryId(Long id) {
-       return categoryRepository.findById(id)
+        return categoryRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Not Found Category :(( "))
                 .getFlimList()
                 .stream()
@@ -85,5 +91,11 @@ public class FlimService implements IFlimService {
                 .map(flimRepository.findById(id).orElseThrow(
                         () -> new NoSuchElementException("Not Found")
                 ), UploadFlimDTO.class);
+    }
+
+    @Override
+    public UploadFlimDTO addSeason(UploadSeasonDTO uploadSeasonDTO) {
+        return modelMapper
+                .map(seasonRepository.save(modelMapper.map(uploadSeasonDTO, Season.class)), UploadFlimDTO.class);
     }
 }
