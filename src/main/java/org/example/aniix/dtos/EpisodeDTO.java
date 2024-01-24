@@ -13,4 +13,5 @@ public class EpisodeDTO {
     private Boolean status;
     private Timestamp uploadDate;
     private SeasonDTO season;
+    private Timestamp updateDate;
 }

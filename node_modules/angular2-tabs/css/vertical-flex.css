@@ -1,0 +1,19 @@
+.an-tablist {
+  list-style-type: none;
+  padding: 0;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.an-tablist .an-tablistitem {
+  -webkit-flex: 1 0 auto;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
+.an-tablist .an-active {
+  background-color: #99ffff;
+}

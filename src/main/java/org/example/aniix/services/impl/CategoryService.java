@@ -51,7 +51,7 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public void delete(Long id) {
-        repository.findById(id);
+        repository.deleteById(id);
     }
 
     @Override

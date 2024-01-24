@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/admin/add-episode/season")
@@ -52,6 +52,18 @@ public class AdminEpisodeController {
         episodeDTO.setSeason(seasonDTO);
         episodeService.insert(episodeDTO);
         System.out.println("Insert complete"+ episodeDTO);
+        return "redirect:/admin/add-episode/season/"+seasonId;
+    }
+    @PutMapping("/update-episode/{id}")
+    public String updateEpisode(@RequestParam("episodeVideo")MultipartFile episodeVideo,@PathVariable("id")Long id){
+        try {
+            EpisodeDTO episodeDTO = episodeService.getById(id);
+            episodeDTO.setLinkFlim(storageService.uploadVideo(episodeVideo));
+            episodeService.update(episodeDTO);
+        }
+        catch (Exception ex) {
+
+        }
         return "redirect:/admin/add-episode/season/"+seasonId;
     }
 }

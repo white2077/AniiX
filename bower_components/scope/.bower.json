@@ -1,0 +1,28 @@
+{
+  "name": "scope",
+  "main": "scope.js",
+  "version": "0.0.2",
+  "homepage": "https://github.com/simonswain/scope",
+  "authors": [
+    "Simon Swain <simon@simonswain.com>"
+  ],
+  "description": "Simple realtime charting",
+  "keywords": [
+    "chart",
+    "graph",
+    "canvas",
+    "data",
+    "realtime"
+  ],
+  "license": "MIT",
+  "_release": "0.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.2",
+    "commit": "47c3e5d17b64b9e1309d69e71908e3911091bccf"
+  },
+  "_source": "https://github.com/simonswain/scope.git",
+  "_target": "^0.0.2",
+  "_originalSource": "scope",
+  "_direct": true
+}

@@ -14,14 +14,14 @@
     <title>Dashboard - SB Admin</title>
     <%@include file="../decorator/head/AdminHead.jsp" %>
 </head>
-<body class="sb-nav-fixed" ng-app="myApp">
+<body class="sb-nav-fixed">
 <%@include file="../decorator/header/AdminHeader.jsp" %>
 
 <div id="layoutSidenav">
     <%@include file="../decorator/SideBar/SideBar.jsp" %>
 
     <div id="layoutSidenav_content">
-        <main ng-app="myApp" >
+        <main>
             <div class="container-fluid px-4">
                 <h1 class="mt-4">Dashboard</h1>
                 <ol class="breadcrumb mb-4">
@@ -143,6 +143,8 @@
 
 
 <%@include file="../decorator/scrpit/AdminScprit.jsp" %>
+<script>
+</script>
 </body>
 </html>
 

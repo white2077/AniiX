@@ -1,0 +1,18 @@
+{
+  "name": "scope",
+  "main": "scope.js",
+  "version": "0.0.2",
+  "homepage": "https://github.com/simonswain/scope",
+  "authors": [
+    "Simon Swain <simon@simonswain.com>"
+  ],
+  "description": "Simple realtime charting",
+  "keywords": [
+    "chart",
+    "graph",
+    "canvas",
+    "data",
+    "realtime"
+  ],
+  "license": "MIT"
+}

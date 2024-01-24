@@ -48,6 +48,7 @@ public class EpisodeService implements IEpisodeService {
 
     @Override
     public void update(EpisodeDTO dto) {
+        dto.setUpdateDate(Timestamp.valueOf(LocalDateTime.now()));
         repository.save(modelMapper.map(dto,Episode.class));
     }
 

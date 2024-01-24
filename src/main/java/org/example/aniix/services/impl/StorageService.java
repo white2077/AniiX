@@ -86,18 +86,16 @@ public class StorageService implements IStorageService {
             Video video = apiVideoClient.videos().create(new VideoCreationPayload().title("my video"));
             video = apiVideoClient.videos().upload(video.getVideoId(),file);
             deleteTempFile(file);
-            System.out.println(video);
             return video.getVideoId();
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountApi#get");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getMessage());
             System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return ":)";
     }
     private File convert(MultipartFile multipartFile) throws IOException {
         File tempFile = File.createTempFile("temp", "."+FilenameUtils.getExtension(multipartFile.getOriginalFilename()));
