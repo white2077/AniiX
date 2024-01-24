@@ -49,11 +49,16 @@ public class SeasonService implements ISeasonService {
 
     @Override
     public void delete(Long id) {
-        repository.findById(id);
+        repository.deleteById(id);
     }
 
     @Override
     public List<SeasonDTO> getAllById(Set<Long> ids) {
         return null;
+    }
+
+    @Override
+    public void updateSeasonName(Long id, String name) {
+        repository.updateName(id,name);
     }
 }

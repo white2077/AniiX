@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.UUID;
 import video.api.client.ApiVideoClient;
 import video.api.client.api.ApiException;
+import video.api.client.api.clients.VideosApi;
 import video.api.client.api.models.Video;
 import video.api.client.api.models.VideoCreationPayload;
 
@@ -79,11 +80,11 @@ public class StorageService implements IStorageService {
     }
 
     @Override
-    public String uploadVideo(MultipartFile videoUp) {
+    public String uploadVideo(MultipartFile videoUp, String videoName) {
         ApiVideoClient apiVideoClient = new ApiVideoClient(API_KEY);
         try {
             File file = convert(videoUp);
-            Video video = apiVideoClient.videos().create(new VideoCreationPayload().title("my video"));
+            Video video = apiVideoClient.videos().create(new VideoCreationPayload().title(videoName+UUID.randomUUID().toString().replace("-","")));
             video = apiVideoClient.videos().upload(video.getVideoId(),file);
             deleteTempFile(file);
             return video.getVideoId();
@@ -97,6 +98,22 @@ public class StorageService implements IStorageService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void deleteVideo(String videoId) {
+        ApiVideoClient client = new ApiVideoClient(API_KEY);
+        VideosApi apiInstance = client.videos();
+        try {
+            apiInstance.delete(videoId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VideosApi#delete");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getMessage());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+
     private File convert(MultipartFile multipartFile) throws IOException {
         File tempFile = File.createTempFile("temp", "."+FilenameUtils.getExtension(multipartFile.getOriginalFilename()));
         multipartFile.transferTo(tempFile);

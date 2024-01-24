@@ -54,11 +54,12 @@ public class EpisodeService implements IEpisodeService {
 
     @Override
     public void delete(Long id) {
-        repository.findById(id);
+        repository.deleteById(id);
     }
 
     @Override
     public List<EpisodeDTO> getAllById(Set<Long> ids) {
         return null;
     }
+
 }

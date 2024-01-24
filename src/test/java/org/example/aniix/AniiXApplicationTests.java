@@ -6,6 +6,7 @@ import org.example.aniix.repositories.ICategoryRepository;
 import org.example.aniix.repositories.IFlimRepository;
 import org.example.aniix.services.ICategoryService;
 import org.example.aniix.services.IFlimService;
+import org.example.aniix.services.ISeasonService;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ class AniiXApplicationTests {
     IFlimRepository flimRepository;
     @Autowired
     IFlimService flimService;
+    @Autowired
+    ISeasonService service;
+
     @Test
     void contextLoads() {
         Long aLong = 1L;
@@ -33,4 +37,8 @@ class AniiXApplicationTests {
         );
     }
 
+    @Test
+    void testUpDateName() {
+        service.updateSeasonName(11L,"Dit me");
+    }
 }

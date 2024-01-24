@@ -14,22 +14,31 @@
     <%@include file="../decorator/SideBar/SideBar.jsp" %>
 
     <div id="layoutSidenav_content">
-        <main>
+        <main ng-app="myApp" ng-controller="MyController">
             <div class="container-fluid px-4">
                 <h1 class="mt-4">${title}</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">${title}</li>
                 </ol>
                 <div class="row">
-                    <form:form action="/admin/add-episode/season/add-episode" class="form-control" method="post"
+                    <form:form action="/admin/episode/season/add-episode" class="form-control" method="post"
                                enctype="multipart/form-data" modelAttribute="episode">
                         <div class="mb-3">
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">Upload an episode :)</label>
                                 <input name="episodeVideo" class="form-control" type="file" id="formFile">
                             </div>
+
                         </div>
-                        <button type="submit" class="btn btn-success">Submit</button>
+                        <div class="d-flex" >
+                        <button type="submit" class="btn btn-success" ng-disabled="buttonClicked">Submit</button>
+<%--                             <div id="loading" ng-style="{'display': isHidden ? 'none' : 'block'}">--%>
+<%--                                 <div class="spinner-border text-primary"  role="status">--%>
+<%--                                     <span class="visually-hidden">Loading...</span>--%>
+<%--                                 </div>--%>
+<%--                                 <span class="">Uploading...</span>--%>
+<%--                             </div>--%>
+                        </div>
                     </form:form>
                 </div>
 
@@ -70,7 +79,10 @@
                                             Edit video
                                         </button>
                                     </td>
-                                    <td><a class="btn btn-danger">Delete</a></td>
+                                    <td> <form:form action="/admin/episode/season/delete-episode/${x.id}" method="delete">
+                                        <input hidden="hidden" name="videoId" value="${x.linkFlim}">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form:form></td>
                                 </tr>
                                 <div class="modal fade" id="editEp${x.id}" tabindex="-1" aria-labelledby="exampleModalLabel"
                                      aria-hidden="true">
@@ -83,7 +95,7 @@
                                             </div>
                                             <iframe class="embed-responsive-item" width="100%" height="400vh" src="https://embed.api.video/vod/${x.linkFlim}" frameborder="0" scrolling="0" allowfullscreen></iframe>
 
-                                            <form:form action="/admin/add-episode/season/update-episode/${x.id}"
+                                            <form:form action="/admin/episode/season/update-episode/${x.id}"
                                                        method="put"
                                                        enctype="multipart/form-data">
                                                 <div class="modal-body">
@@ -116,5 +128,24 @@
 
 
 <%@include file="../decorator/scrpit/AdminScprit.jsp" %>
+<script>
+    // window.addEventListener('load', function() {
+    //     // Chạy AngularJS
+    //     angular.bootstrap(document, ['myApp']);
+    //
+    //     // Thực hiện các hàm AngularJS hoặc tương tác với scope tại đây
+    //     var scope = angular.element(document.querySelector('[ng-controller="MyController"]')).scope();
+    //     scope.$apply(function() {
+    //         scope.init(); // Gọi hàm init() trong controller
+    //     });
+    // });
+    // angular.module('myApp', [])
+    //     .controller('MyController', ['$scope', function($scope) {
+    //            $scope.showLoading = ()=>{
+    //             $scope.isHidden = false;
+    //             $scope.buttonClicked=true
+    //         }
+    //     }]);
+</script>
 </body>
 </html>

@@ -15,11 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @Controller
-@RequestMapping("/admin/add-episode/season")
+@RequestMapping("/admin/episode/season")
 public class AdminEpisodeController {
     @Autowired
     private IEpisodeService episodeService;
@@ -38,32 +36,40 @@ public class AdminEpisodeController {
             @PathVariable("id") Long id, Model model) {
         seasonDTO=iSeasonService.getById(id);
         seasonId = id;
-        model.addAttribute("title",seasonDTO.getSeasonName());
         episodeValidator = new EpisodeValidator();
-        model.addAttribute("thumbnail",flimService.getBySeasonId(seasonId).getThumbnail());
-        model.addAttribute("allEpisode",seasonDTO.getEpisodes());
-        model.addAttribute("episode",episodeValidator);
+        mapModel(model);
         return "admin/AddEpisode.jsp";
     }
     @PostMapping("/add-episode")
     public String addEpisode(@Valid EpisodeValidator episodeValidator, BindingResult bindingResult){
         EpisodeDTO episodeDTO = new EpisodeDTO();
-        episodeDTO.setLinkFlim(storageService.uploadVideo(episodeValidator.getEpisodeVideo()));
+        episodeDTO.setLinkFlim(storageService.uploadVideo(episodeValidator.getEpisodeVideo(),seasonDTO.getSeasonName()));
         episodeDTO.setSeason(seasonDTO);
         episodeService.insert(episodeDTO);
-        System.out.println("Insert complete"+ episodeDTO);
-        return "redirect:/admin/add-episode/season/"+seasonId;
+        return "redirect:/admin/episode/season/"+seasonId;
     }
     @PutMapping("/update-episode/{id}")
     public String updateEpisode(@RequestParam("episodeVideo")MultipartFile episodeVideo,@PathVariable("id")Long id){
         try {
             EpisodeDTO episodeDTO = episodeService.getById(id);
-            episodeDTO.setLinkFlim(storageService.uploadVideo(episodeVideo));
+            episodeDTO.setLinkFlim(storageService.uploadVideo(episodeVideo,seasonDTO.getSeasonName()));
             episodeService.update(episodeDTO);
         }
         catch (Exception ex) {
 
         }
         return "redirect:/admin/add-episode/season/"+seasonId;
+    }
+    @DeleteMapping("/delete-episode/{id}")
+    public String deleteEpisode(@PathVariable("id")Long id,@RequestParam("videoId") String videoId){
+        episodeService.delete(id);
+        storageService.deleteVideo(videoId);
+        return "redirect:/admin/episode/season/"+seasonId;
+    }
+    private void mapModel(Model model){
+        model.addAttribute("title",seasonDTO.getSeasonName());
+        model.addAttribute("thumbnail",flimService.getBySeasonId(seasonId).getThumbnail());
+        model.addAttribute("allEpisode",seasonDTO.getEpisodes());
+        model.addAttribute("episode",episodeValidator);
     }
 }

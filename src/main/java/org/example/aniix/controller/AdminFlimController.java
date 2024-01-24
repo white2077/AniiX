@@ -31,7 +31,9 @@ public class AdminFlimController {
     @Autowired
     private ICategoryService categoryService;
     @Autowired
-    IStorageService storageService;
+    private IStorageService storageService;
+    @Autowired
+    private ISeasonService seasonService;
     private UploadFlimDTO uploadFlimDTO;
     private FlimFormValidator flimFormValidator;
     private SeasonFormValidator seasonFormValidator;
@@ -145,18 +147,29 @@ public class AdminFlimController {
     }
     @PostMapping("/add-season")
     public String addFlimSeason(
-            @Valid SeasonFormValidator flimFormValidator
+            @Valid SeasonFormValidator formValidator
             , BindingResult bindingResult){
         System.out.println(bindingResult);
         UploadSeasonDTO dto = new UploadSeasonDTO();
         dto.setFlim(uploadFlimDTO);
-        dto.setSeasonName(flimFormValidator.getSeasonName());
+        dto.setSeasonName(formValidator.getSeasonName());
         dto.setStatus(true);
         dto.setUploadDate(Timestamp.valueOf(LocalDateTime.now()));
-        dto.setReleaseYear(flimFormValidator.getReleaseYear());
+        dto.setReleaseYear(formValidator.getReleaseYear());
         flimService.addSeason(dto);
         return "redirect:/admin/update-flim/"+uploadFlimDTO.getId();
     }
+    @PutMapping("/update-season/{id}")
+    public String updateSeason(@PathVariable("id") Long id,@RequestParam("seasonName") String seasonName){
+        seasonService.updateSeasonName(id,seasonName);
+        return "redirect:/admin/update-flim/"+uploadFlimDTO.getId();
+    }
+    @DeleteMapping("/delete-season/{id}")
+    public String deleteSeason(@PathVariable("id") Long id){
+        seasonService.delete(id);
+        return "redirect:/admin/update-flim/"+uploadFlimDTO.getId();
+    }
+
 
 
 

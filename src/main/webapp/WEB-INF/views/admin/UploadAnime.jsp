@@ -198,10 +198,45 @@
                                                 <td>${x.episodes.size()}</td>
                                                 <td>${x.releaseYear}</td>
                                                 <td>${x.uploadDate}</td>
-                                                <td><a href="/admin/add-episode/season/${x.id}" class="btn btn-success">Click :)</a></td>
-                                                <td><a href="#" class="btn btn-success">Edit</a></td>
-                                                <td><a href="#" class="btn btn-success">Delete</a></td>
+                                                <td><a href="/admin/episode/season/${x.id}" class="btn btn-success">Click :)</a></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                            data-bs-target="#editSeason${x.id}">
+                                                        Edit
+                                                    </button>
+                                                </td>
+                                                <td><form:form action="/admin/delete-season/${x.id}" method="delete">
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form:form></td>
                                             </tr>
+                                            <div class="modal fade" id="editSeason${x.id}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit season name</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                        </div>
+                                                        <form:form action="/admin/update-season/${x.id}"
+                                                                   method="put">
+                                                            <div class="modal-body">
+
+                                                                <label for="formFile" class="form-label">Update season name
+                                                                    :)</label>
+                                                                <input name="seasonName" class="form-control" type="text">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close
+                                                                </button>
+                                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </form:form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </c:forEach>
                                         </tbody>
                                     </table>
