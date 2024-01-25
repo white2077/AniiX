@@ -20,7 +20,7 @@ public class Flim {
     private String name;
     @Column(columnDefinition = "nvarchar(4000)")
     private String thumbnail;
-    @Column(columnDefinition = "nvarchar(600)")
+    @Column(columnDefinition = "nvarchar(4000)")
     private String description;
     private int releaseYear;
     private boolean type;

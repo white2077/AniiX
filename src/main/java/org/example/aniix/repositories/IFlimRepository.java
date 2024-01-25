@@ -8,4 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface IFlimRepository extends JpaRepository<Flim,Long> {
+    List<Flim> findTop5ByOrderByUploadDateDesc();
+    List<Flim> findTop10ByOrderByUploadDateDesc();
+    List<Flim> findAllByOrderByUploadDateDesc();
+
 }

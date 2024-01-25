@@ -6,6 +6,7 @@ import org.example.aniix.repositories.ICountryRespository;
 import org.example.aniix.services.ICountryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,5 +56,15 @@ public class CountryService implements ICountryService {
     @Override
     public List<CountryDTO> getAllById(Set<Long> ids) {
         return null;
+    }
+
+    @Override
+    public List<CountryDTO> Paging(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public int getTotalPage(int amount) {
+        return 0;
     }
 }

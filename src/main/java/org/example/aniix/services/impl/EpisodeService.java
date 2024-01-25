@@ -6,6 +6,7 @@ import org.example.aniix.repositories.IEpisodeRepository;
 import org.example.aniix.services.IEpisodeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -60,6 +61,16 @@ public class EpisodeService implements IEpisodeService {
     @Override
     public List<EpisodeDTO> getAllById(Set<Long> ids) {
         return null;
+    }
+
+    @Override
+    public List<EpisodeDTO> Paging(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public int getTotalPage(int amount) {
+        return 0;
     }
 
 }

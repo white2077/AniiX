@@ -7,6 +7,7 @@ import org.example.aniix.repositories.ICategoryRepository;
 import org.example.aniix.services.ICategoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -60,5 +61,15 @@ public class CategoryService implements ICategoryService {
                 .stream()
                 .map(category -> modelMapper.map(category, CategoryDTO.class))
                 .toList();
+    }
+
+    @Override
+    public List<CategoryDTO> Paging(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public int getTotalPage(int amount) {
+        return 0;
     }
 }

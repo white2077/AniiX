@@ -11,8 +11,10 @@ import org.example.aniix.repositories.ISeasonRepository;
 import org.example.aniix.services.IFlimService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -68,6 +70,20 @@ public class FlimService implements IFlimService {
     }
 
     @Override
+    public List<FlimDTO> Paging(Pageable pageable) {
+        return flimRepository.findAll(pageable).
+                getContent()
+                .stream()
+                .map(flim -> modelMapper.map(flim,FlimDTO.class))
+                .toList();
+    }
+
+    @Override
+    public int getTotalPage(int amount) {
+        return flimRepository.findAll(Pageable.ofSize(amount)).getTotalPages();
+    }
+
+    @Override
     public List<FlimDTO> getAllByCategoryId(Long id) {
         return categoryRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Not Found Category :(( "))
@@ -76,7 +92,7 @@ public class FlimService implements IFlimService {
                 .map(flim -> modelMapper.map(flim, FlimDTO.class))
                 .toList();
     }
-
+    @Transactional
     @Override
     public UploadFlimDTO upload(UploadFlimDTO uploadFlimDTO) {
         return modelMapper
@@ -107,4 +123,27 @@ public class FlimService implements IFlimService {
                                 .getFlim()
                         , FlimDTO.class);
     }
+
+    @Override
+    public List<FlimDTO> getTop5Newest() {
+        return flimRepository.findTop5ByOrderByUploadDateDesc()
+                .stream()
+                .map(flim -> modelMapper.map(flim, FlimDTO.class))
+                .toList();
+    }
+
+    @Override
+    public List<FlimDTO> getTop10Newest() {
+        return flimRepository.findTop10ByOrderByUploadDateDesc()
+                .stream()
+                .map(flim -> modelMapper.map(flim, FlimDTO.class))
+                .toList();
+    }
+
+    @Override
+    public List<FlimDTO> getAllNewest() {
+        return flimRepository.findAllByOrderByUploadDateDesc()
+                .stream()
+                .map(flim -> modelMapper.map(flim, FlimDTO.class))
+                .toList();    }
 }

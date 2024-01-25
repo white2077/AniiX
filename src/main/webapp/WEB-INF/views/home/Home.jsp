@@ -26,7 +26,7 @@
 
             <div class="col-12">
                 <div class="owl-carousel home__carousel">
-                    <c:forEach items="${flimList}" var="x">
+                    <c:forEach items="${top5Newest}" var="x">
                         <div class="item">
                             <!-- card -->
                             <div class="card card--big">

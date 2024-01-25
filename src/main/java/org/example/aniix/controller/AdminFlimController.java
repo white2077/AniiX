@@ -54,11 +54,7 @@ public class AdminFlimController {
         return countryService.getAll();
     }
 
-    @GetMapping("/admin-page")
-    public String adminPage(Model model) {
-        model.addAttribute("flim", flimService.getAll());
-        return "admin/index.jsp";
-    }
+
 
     @GetMapping("/add-new")
     public String addFlimPage(Model model) {

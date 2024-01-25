@@ -12,4 +12,9 @@ public interface IFlimService extends ICrudService<FlimDTO,Long> {
     UploadFlimDTO getFlimForUpload(Long id);
     UploadFlimDTO addSeason(UploadSeasonDTO uploadSeasonDTO);
     FlimDTO getBySeasonId(Long id);
+
+    List<FlimDTO> getTop5Newest();
+    List<FlimDTO> getTop10Newest();
+    List<FlimDTO> getAllNewest();
+
 }

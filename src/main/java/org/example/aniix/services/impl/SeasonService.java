@@ -6,6 +6,7 @@ import org.example.aniix.repositories.ISeasonRepository;
 import org.example.aniix.services.ISeasonService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,6 +56,16 @@ public class SeasonService implements ISeasonService {
     @Override
     public List<SeasonDTO> getAllById(Set<Long> ids) {
         return null;
+    }
+
+    @Override
+    public List<SeasonDTO> Paging(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public int getTotalPage(int amount) {
+        return 0;
     }
 
     @Override

@@ -6,6 +6,7 @@ import org.example.aniix.repositories.IUsersRepository;
 import org.example.aniix.services.IUserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,5 +55,15 @@ public class UserService implements IUserService {
     @Override
     public List<UsersDTO> getAllById(Set<Long> ids) {
         return null;
+    }
+
+    @Override
+    public List<UsersDTO> Paging(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public int getTotalPage(int amount) {
+        return 0;
     }
 }

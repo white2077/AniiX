@@ -6,6 +6,7 @@ import org.example.aniix.repositories.ITagRepository;
 import org.example.aniix.services.ITagService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -58,5 +59,15 @@ public class TagService implements ITagService {
                 .stream()
                 .map(category -> modelMapper.map(category,TagDTO.class))
                 .toList();
+    }
+
+    @Override
+    public List<TagDTO> Paging(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public int getTotalPage(int amount) {
+        return 0;
     }
 }
