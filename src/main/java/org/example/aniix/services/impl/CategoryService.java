@@ -64,7 +64,7 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public List<CategoryDTO> Paging(Pageable pageable) {
+    public List<CategoryDTO> paging(Pageable pageable) {
         return null;
     }
 

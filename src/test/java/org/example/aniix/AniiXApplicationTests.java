@@ -12,6 +12,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
+import java.util.Set;
 
 @SpringBootTest
 class AniiXApplicationTests {
@@ -40,7 +44,9 @@ class AniiXApplicationTests {
 
     @Test
     void testPaging() {
-        flimService.Paging(PageRequest.of(0,10)).forEach(System.out::println);
+//        flimService.paging(PageRequest.of(0,10)).forEach(System.out::println);
+        System.out.println(        flimService.getTotalPage(10)
+        );
     }
 
     @Test
@@ -51,5 +57,16 @@ class AniiXApplicationTests {
     @Test
     void top10Newest() {
 
+    }
+
+    @Test
+    void pagingFlimByCategory() {
+        flimRepository.findAllFlimsByCategoryId(1L,PageRequest.of(0,10)).getContent().forEach(flim -> System.out.println(flim.getName()));
+    }
+
+    @Test
+    void pagingFlimByCategoryService() {
+        flimService.pagingFlimsByCategoryId(1L,PageRequest.of(0,10)).forEach(System.out::println);
+        System.out.println(flimService.getPagingFlimsByCategoryIdToalPage(10,1L));
     }
 }

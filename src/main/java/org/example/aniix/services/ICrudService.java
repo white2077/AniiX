@@ -1,6 +1,5 @@
 package org.example.aniix.services;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -13,6 +12,6 @@ public interface ICrudService <T,K>{
     public void update (T dto);
     public void delete(K id);
     public List<T> getAllById(Set<K> ids);
-    public List<T> Paging(Pageable pageable);
+    public List<T> paging(Pageable pageable);
     public int getTotalPage(int amount);
 }

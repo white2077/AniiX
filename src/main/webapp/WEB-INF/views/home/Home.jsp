@@ -40,7 +40,7 @@
                                     <h3 class="card__title"><a href="#">${x.name}</a></h3>
                                     <span class="card__category">
 										<c:forEach items="${x.categories}" var="category">
-                                            <a href="/category/${category.id}">${category.name}</a>
+                                            <a href="/flim/category/${category.id}/1">${category.name}</a>
                                         </c:forEach>
 									</span>
                                     <span class="card__rate"><i class="icon ion-ios-star"></i>8.4</span>
@@ -95,7 +95,7 @@
                                             <h3 class="card__title"><a href="/flim/${x.id}">${x.name}</a></h3>
                                             <span class="card__category">
 												<c:forEach items="${x.categories}" var="category">
-                                                    <a href="/category/${category.id}">${category.name}</a>
+                                                    <a href="/flim/category/${category.id}/1">${category.name}</a>
                                                 </c:forEach>
 											</span>
 
@@ -125,7 +125,7 @@
             </div>
         </div>
         <div class="col-12">
-            <a href="#" class="section__btn">Show more</a>
+            <a href="/flim/all-flim/page/1" class="section__btn">Show more</a>
         </div>
         <!-- end content tabs -->
     </div>

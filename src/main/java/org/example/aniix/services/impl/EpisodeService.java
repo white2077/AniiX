@@ -64,7 +64,7 @@ public class EpisodeService implements IEpisodeService {
     }
 
     @Override
-    public List<EpisodeDTO> Paging(Pageable pageable) {
+    public List<EpisodeDTO> paging(Pageable pageable) {
         return null;
     }
 

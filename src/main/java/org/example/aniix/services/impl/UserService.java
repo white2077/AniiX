@@ -58,7 +58,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<UsersDTO> Paging(Pageable pageable) {
+    public List<UsersDTO> paging(Pageable pageable) {
         return null;
     }
 

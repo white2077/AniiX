@@ -181,7 +181,7 @@
                                     <h3 class="card__title"><a href="/flim/${x.id}">${x.name}</a></h3>
                                     <span class="card__category">
 										<c:forEach items="${x.categories}" var="category">
-                                            <a href="/category/${category.id}">${category.name}</a>
+                                            <a href="/flim/category/${category.id}/1">${category.name}</a>
                                         </c:forEach>
 									</span>
 
@@ -209,20 +209,32 @@
             <!-- end card -->
 
             <!-- paginator -->
-            <div class="col-12">
-                <ul class="paginator paginator--list">
-                    <li class="paginator__item paginator__item--prev">
-                        <a href="#"><i class="icon ion-ios-arrow-back"></i></a>
-                    </li>
-                    <li class="paginator__item"><a href="#">1</a></li>
-                    <li class="paginator__item paginator__item--active"><a href="#">2</a></li>
-                    <li class="paginator__item"><a href="#">3</a></li>
-                    <li class="paginator__item"><a href="#">4</a></li>
-                    <li class="paginator__item paginator__item--next">
-                        <a href="#"><i class="icon ion-ios-arrow-forward"></i></a>
-                    </li>
-                </ul>
-            </div>
+            <c:if test="${allPage !=1}">
+                <div class="col-12">
+                    <ul class="paginator paginator--list">
+                        <li class="paginator__item paginator__item--prev">
+                            <c:if test="${currentPage!=1}">
+                                <a href="/flim/all-flim/page/${currentPage-1}"><i class="icon ion-ios-arrow-back"></i></a>
+                            </c:if>
+                        </li>
+                        <c:forEach var="page" begin="1" end="${allPage}">
+                            <c:choose>
+                                <c:when test="${page == currentPage}">
+                                    <li class="paginator__item paginator__item--active"><a href="#">${page}</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li class="paginator__item"><a href="/flim/all-flim/page/${page}">${page}</a></li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                        <li class="paginator__item paginator__item--next">
+                            <c:if test="${allPage!=currentPage}">
+                                <a href="/flim/all-flim/page/${currentPage+1}"><i class="icon ion-ios-arrow-forward"></i></a>
+                            </c:if>
+                        </li>
+                    </ul>
+                </div>
+            </c:if>
             <!-- end paginator -->
         </div>
     </div>

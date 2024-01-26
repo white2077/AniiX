@@ -62,7 +62,7 @@ public class TagService implements ITagService {
     }
 
     @Override
-    public List<TagDTO> Paging(Pageable pageable) {
+    public List<TagDTO> paging(Pageable pageable) {
         return null;
     }
 

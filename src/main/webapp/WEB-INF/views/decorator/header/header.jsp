@@ -23,11 +23,7 @@
                         <ul class="header__nav">
                             <!-- dropdown -->
                             <li class="header__nav-item">
-                                <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-
-                                <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">
-                                    <li><a href="index2.html">Home static bg</a></li>
-                                </ul>
+                                <a href="/" class="header__nav-link">Home</a>
                             </li>
                             <!-- end dropdown -->
 
@@ -36,13 +32,13 @@
                                 <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
 
                                 <ul class="dropdown-menu header__dropdown-menu" style="display: grid;grid-template-columns: repeat(3,1fr);column-gap: 40px;width: fit-content" aria-labelledby="dropdownMenuCatalog">
-                                        <li ng-repeat = "x in responseData"><a href={{"/category/"+x.id}} >{{x.name}}</a></li>
+                                        <li ng-repeat = "x in responseData"><a href={{"/flim/category/"+x.id+"/1"}} >{{x.name}}</a></li>
                                 </ul>
                             </li>
                             <!-- end dropdown -->
 
                             <li class="header__nav-item">
-                                <a href="faq.html" class="header__nav-link">Help</a>
+                                <a href="/flim/all-flim/page/1" class="header__nav-link">All Films</a>
                             </li>
                             <sec:authorize access="hasAnyAuthority('ADMIN')">
                                 <li class="header__nav-item">

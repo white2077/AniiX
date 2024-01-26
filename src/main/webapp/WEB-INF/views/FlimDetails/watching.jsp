@@ -58,7 +58,7 @@
                                 <ul class="card__meta">
                                     <li><span>Genre:</span>
                                         <c:forEach items="${flim.categories}" var="category">
-                                            <a href="/category/${category.id}">${category.name}</a>
+                                            <a href="/flim/category/${category.id}/1">${category.name}</a>
                                         </c:forEach>
                                     </li>
                                     <li><span>Release year:</span>${flim.releaseYear}</li>

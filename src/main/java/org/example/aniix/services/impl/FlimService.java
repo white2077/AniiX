@@ -70,8 +70,8 @@ public class FlimService implements IFlimService {
     }
 
     @Override
-    public List<FlimDTO> Paging(Pageable pageable) {
-        return flimRepository.findAll(pageable).
+    public List<FlimDTO> paging(Pageable pageable) {
+        return flimRepository.findAllByOrderByUploadDateDesc(pageable).
                 getContent()
                 .stream()
                 .map(flim -> modelMapper.map(flim,FlimDTO.class))
@@ -80,7 +80,7 @@ public class FlimService implements IFlimService {
 
     @Override
     public int getTotalPage(int amount) {
-        return flimRepository.findAll(Pageable.ofSize(amount)).getTotalPages();
+        return flimRepository.findAllByOrderByUploadDateDesc(Pageable.ofSize(amount)).getTotalPages();
     }
 
     @Override
@@ -145,5 +145,21 @@ public class FlimService implements IFlimService {
         return flimRepository.findAllByOrderByUploadDateDesc()
                 .stream()
                 .map(flim -> modelMapper.map(flim, FlimDTO.class))
-                .toList();    }
+                .toList();}
+
+    @Override
+    public List<FlimDTO> pagingFlimsByCategoryId(Long id,Pageable pageable){
+        return flimRepository
+                .findAllFlimsByCategoryId(id,pageable)
+                .getContent()
+                .stream()
+                .map(flim -> modelMapper.map(flim, FlimDTO.class))
+                .toList();
+    }
+
+    @Override
+    public int getPagingFlimsByCategoryIdToalPage(int amount,Long id) {
+        return flimRepository.findAllFlimsByCategoryId(id,Pageable.ofSize(amount)).getTotalPages();
+
+    }
 }

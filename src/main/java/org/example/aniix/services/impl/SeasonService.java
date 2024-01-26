@@ -59,7 +59,7 @@ public class SeasonService implements ISeasonService {
     }
 
     @Override
-    public List<SeasonDTO> Paging(Pageable pageable) {
+    public List<SeasonDTO> paging(Pageable pageable) {
         return null;
     }
 

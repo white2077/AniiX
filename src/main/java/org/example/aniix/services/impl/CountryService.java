@@ -59,7 +59,7 @@ public class CountryService implements ICountryService {
     }
 
     @Override
-    public List<CountryDTO> Paging(Pageable pageable) {
+    public List<CountryDTO> paging(Pageable pageable) {
         return null;
     }
 
