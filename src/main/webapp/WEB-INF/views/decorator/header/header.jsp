@@ -109,14 +109,14 @@
     </div>
 
     <!-- header search -->
-    <form action="#" class="header__search">
+    <form action="/flim/searching" method="get" class="header__search">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="header__search-content">
-                        <input type="text" placeholder="Search for a movie, TV Series that you are looking for">
-
-                        <button type="button">search</button>
+                        <input type="text" name="keyword" placeholder="Search for a movie, TV Series that you are looking for">
+                        <input hidden="hidden" value="1" name="page">
+                        <button type="submit">search</button>
                     </div>
                 </div>
             </div>

@@ -165,13 +165,6 @@ public class AdminFlimController {
         seasonService.delete(id);
         return "redirect:/admin/update-flim/"+uploadFlimDTO.getId();
     }
-
-
-
-
-
-
-
     private UploadFlimDTO bindFlimData(
             FlimFormValidator flimFormValidator
             , Long country

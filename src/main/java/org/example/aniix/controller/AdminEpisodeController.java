@@ -52,13 +52,14 @@ public class AdminEpisodeController {
     public String updateEpisode(@RequestParam("episodeVideo")MultipartFile episodeVideo,@PathVariable("id")Long id){
         try {
             EpisodeDTO episodeDTO = episodeService.getById(id);
+            storageService.deleteVideo(episodeDTO.getLinkFlim());
             episodeDTO.setLinkFlim(storageService.uploadVideo(episodeVideo,seasonDTO.getSeasonName()));
             episodeService.update(episodeDTO);
         }
         catch (Exception ex) {
 
         }
-        return "redirect:/admin/add-episode/season/"+seasonId;
+        return "redirect:/admin/episode/season/"+seasonId;
     }
     @DeleteMapping("/delete-episode/{id}")
     public String deleteEpisode(@PathVariable("id")Long id,@RequestParam("videoId") String videoId){

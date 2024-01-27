@@ -9,7 +9,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <html>
-<%@include file="../decorator/head/head.jsp"%>
+<%@include file="../decorator/head/head.jsp" %>
 <body>
 
 <div class="sign section--bg" data-bg="/img/section/section.jpg">
@@ -24,20 +24,20 @@
                         </a>
 
                         <div class="sign__group">
-                            <input type="text" class="sign__input" placeholder="Username" id="username" name="username">
+                            <input type="text" class="sign__input" placeholder="Username" id="username" name="username"
+                                   required>
                         </div>
 
                         <div class="sign__group">
-                            <input type="password" class="sign__input" placeholder="Password" id="password" name="password">
+                            <input type="password" class="sign__input" placeholder="Password" id="password"
+                                   name="password" required>
                         </div>
-
                         <%--                        <div class="sign__group sign__group--checkbox">--%>
                         <%--                            <input id="remember" name="remember" type="checkbox" checked="checked">--%>
                         <%--                            <label for="remember">Remember Me</label>--%>
                         <%--                        </div>--%>
-
+                        <h5 style="color: #ff5860;"> ${error}</h5>
                         <input class="sign__btn" type="submit" value="Sign in"></input>
-
                         <span class="sign__text">Don't have an account? <a href="/register">Sign up!</a></span>
 
                         <span class="sign__text"><a href="#">Forgot password?</a></span>
@@ -48,6 +48,6 @@
         </div>
     </div>
 </div>
-<%@include file="../decorator/scrpit/scrpit.jsp"%>
+<%@include file="../decorator/scrpit/scrpit.jsp" %>
 </body>
 </html>

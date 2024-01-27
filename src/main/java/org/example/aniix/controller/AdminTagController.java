@@ -1,2 +1,4 @@
-package org.example.aniix.controller;public class AdminTagController {
+package org.example.aniix.controller;
+
+public class AdminTagController {
 }

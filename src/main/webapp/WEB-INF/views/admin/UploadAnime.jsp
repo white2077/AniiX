@@ -59,7 +59,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Categories:</label>
                                 <div class="form-check">
-                                    <form:checkboxes cssStyle="margin-right: 20px" path="categories" items="${categories}" itemLabel="name"
+                                    <form:checkboxes path="categories" items="${categories}" itemLabel="name"
                                                      itemValue="id"/>
                                 </div>
                                 <form:errors path="categories"/>

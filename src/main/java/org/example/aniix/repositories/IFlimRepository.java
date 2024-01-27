@@ -19,4 +19,8 @@ public interface IFlimRepository extends JpaRepository<Flim,Long> {
     Page<Flim> findAllByOrderByUploadDateDesc(Pageable pageable);
     @Query("SELECT f FROM Category c JOIN c.flimList f WHERE c.Id=:id ORDER BY f.uploadDate DESC")
     Page<Flim> findAllFlimsByCategoryId(@Param("id") Long id, Pageable pageable);
+    @Query("SELECT f FROM Flim f WHERE f.name like :keyword% ORDER BY f.uploadDate DESC")
+
+    Page<Flim> findAllFlimsByNameLikeKeyword(@Param("keyword") String keyword, Pageable pageable);
+
 }

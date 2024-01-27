@@ -162,4 +162,19 @@ public class FlimService implements IFlimService {
         return flimRepository.findAllFlimsByCategoryId(id,Pageable.ofSize(amount)).getTotalPages();
 
     }
+
+    @Override
+    public List<FlimDTO> pagingSearchingFilms(String keyword,Pageable pageable) {
+        return flimRepository
+                .findAllFlimsByNameLikeKeyword(keyword,pageable)
+                .getContent()
+                .stream()
+                .map(flim -> modelMapper.map(flim, FlimDTO.class))
+                .toList();
+    }
+
+    @Override
+    public int getPagingSearchingFilmsTotalPage(int amount,String keyword) {
+      return  flimRepository.findAllFlimsByNameLikeKeyword(keyword,Pageable.ofSize(amount)).getTotalPages();
+    }
 }

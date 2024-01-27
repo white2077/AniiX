@@ -19,4 +19,8 @@ public interface IFlimService extends ICrudService<FlimDTO,Long> {
     List<FlimDTO> getAllNewest();
     List<FlimDTO> pagingFlimsByCategoryId(Long id,Pageable pageable);
     int getPagingFlimsByCategoryIdToalPage(int amount,Long id);
+    List<FlimDTO> pagingSearchingFilms(String keyword,Pageable pageable);
+    int getPagingSearchingFilmsTotalPage(int amount,String keyword);
+
+
 }

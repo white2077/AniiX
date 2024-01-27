@@ -34,4 +34,7 @@
                 console.error('Error:', error);
             });
     });
+    myApp.controller('searchingController',($scope)=>{
+        $scope
+    })
 </script>

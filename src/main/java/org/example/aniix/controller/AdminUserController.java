@@ -1,2 +1,4 @@
-package org.example.aniix;public class AdminUserController {
+package org.example.aniix.controller;
+
+public class AdminUserController {
 }

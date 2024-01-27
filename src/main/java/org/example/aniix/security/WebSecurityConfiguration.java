@@ -11,39 +11,47 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsService userDetailsService;
+
     @Bean
-    AuthenticationProvider authenticationProvider(){
+    AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
         daoAuthenticationProvider.setPasswordEncoder(new BCryptPasswordEncoder());
         return daoAuthenticationProvider;
     }
+
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .antMatchers("/login","/logout","/")
+                .antMatchers("/login", "/logout", "/")
                 .permitAll()
                 .antMatchers("/admin/**")
-                .permitAll()
+                .hasAuthority("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .successHandler(customAuthenticationSuccseshandler())
                 .failureForwardUrl("/login")
+//                .failureHandler(customAuthenticationFailure())
                 .permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/error/access-denied")
                 .and()
                 .logout().logoutSuccessUrl("/login")
                 .invalidateHttpSession(true)
@@ -52,5 +60,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .maximumSessions(1)
                 .expiredUrl("/");
+    }
+
+    @Bean
+    CustomAuthenticationSuccseshandler customAuthenticationSuccseshandler() {
+        return new CustomAuthenticationSuccseshandler();
+    }
+
+    @Bean
+    CustomAuthenticationFailure customAuthenticationFailure() {
+        return new CustomAuthenticationFailure();
     }
 }
