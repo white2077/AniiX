@@ -38,12 +38,16 @@ public class FlimController {
     @GetMapping("/all-flim/page/{page}")
     public String allFlims(Model model, @PathVariable("page") int page) {
         model.addAttribute("category", "All film");
-        Pageable pageable = PageRequest.of(page - 1, 10);
-        model.addAttribute("flims", flimService.paging(pageable));
-        model.addAttribute("allPage", flimService.getTotalPage(10));
-        model.addAttribute("currentPage", page);
-        model.addAttribute("pagingType",true);
+        int totalPage = flimService.getTotalPage(10);
+        if (page<=totalPage){
+            Pageable pageable = PageRequest.of(page - 1, 10);
+            model.addAttribute("flims", flimService.paging(pageable));
+            model.addAttribute("allPage", flimService.getTotalPage(10));
+            model.addAttribute("currentPage", page);
+            model.addAttribute("pagingType", true);
         return "CategoryDetails/CategoryDetails.jsp";
+        }
+        return "NotFound";
     }
 
     @GetMapping("/category/{id}/{page}")

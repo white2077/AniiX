@@ -7,6 +7,7 @@ import org.example.aniix.services.IUserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.acls.model.AlreadyExistsException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,7 +37,11 @@ public class UserService implements IUserService {
 
     @Override
     public UsersDTO insert(UsersDTO dto) {
-        return modelMapper
+        if (repository.findByUsername(dto.getUsername()).isPresent())
+            throw new AlreadyExistsException("Username already exist");
+        else if (repository.findByEmail(dto.getEmail()).isPresent())
+            throw new AlreadyExistsException("Email already exist");
+        else return modelMapper
                 .map(
                         repository.save(modelMapper.map(dto, Users.class)), UsersDTO.class
                 );

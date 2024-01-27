@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,19 +36,26 @@ public class RegisterController {
     public String createAccount(
             @RequestParam("username") String username,
             @RequestParam("password")String password,
-            @RequestParam("email") String email)
+            @RequestParam("email") String email, Model model)
     {
-        Set<RoleDTO> roles = new HashSet<>(roleService.getAll());
-        UsersDTO usersDTO = new UsersDTO();
-        usersDTO.setRoles(roles
-                .stream()
-                .filter(roleDTO -> roleDTO.getRoleName().equals("USER"))
-                .collect(Collectors.toSet()));
-        usersDTO.setUsername(username);
-        usersDTO.setPassword(encoder.encode(password));
-        usersDTO.setEmail(email);
-        userService.insert(usersDTO);
-        System.out.println("Register Complete");
-        return "redirect:/login";
+        try {
+            Set<RoleDTO> roles = new HashSet<>(roleService.getAll());
+            UsersDTO usersDTO = new UsersDTO();
+            usersDTO.setRoles(roles
+                    .stream()
+                    .filter(roleDTO -> roleDTO.getRoleName().equals("USER"))
+                    .collect(Collectors.toSet()));
+            usersDTO.setUsername(username);
+            usersDTO.setPassword(encoder.encode(password));
+            usersDTO.setEmail(email);
+            userService.insert(usersDTO);
+            System.out.println("Register Complete");
+            return "redirect:/login";
+        }catch (Exception e){
+            model = e.getMessage().contains("User") ?
+                    model.addAttribute("userError", e.getMessage()) : model.addAttribute("emailError", e.getMessage());
+            System.out.println(e.getMessage()   );
+            return "register/register.jsp";
+        }
     }
 }

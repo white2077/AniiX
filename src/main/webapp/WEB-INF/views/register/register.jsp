@@ -25,11 +25,11 @@
             <div class="sign__group">
               <input type="text" class="sign__input" placeholder="Username" name="username">
             </div>
-
+            <h5 style="color: #ff5860;"> ${userError}</h5>
             <div class="sign__group">
               <input type="email" class="sign__input" placeholder="Email" name="email">
             </div>
-
+            <h5 style="color: #ff5860;"> ${emailError }</h5>
             <div class="sign__group">
               <input type="password" class="sign__input" placeholder="Password" name="password">
             </div>
