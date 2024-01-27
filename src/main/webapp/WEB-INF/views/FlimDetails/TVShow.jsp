@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="code" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: buidu
@@ -12,7 +13,6 @@
 <%@include file="../decorator/head/head.jsp"%>
 <body>
 <%@include file="../decorator/header/header.jsp"%>
-
 <section class="section details">
     <!-- details background -->
     <div class="details__bg" data-bg="/flim-image/${flim.thumbnail}"></div>
@@ -61,6 +61,16 @@
                                     <li><span>Release year:</span> ${flim.releaseYear}</li>
                                     <li><span>Seasons:</span> ${flim.seasons.size()} seasons</li>
                                     <li><span>Country:</span> <a href="#">${flim.country.name}</a> </li>
+                                    <sec:authorize access="hasAnyAuthority('ADMIN','USER')">
+                                        <li><form:form action="/user/add-to-favourite-list" method="post">
+                                            <input hidden="hidden" name="username" value="${user.username}">
+                                            <input  hidden="hidden" name="filmId" value="${flim.id}">
+                                            <button type="submit" class="section__btn"><i class="fa-solid fa-heart" style="color: #ffffff;margin-right: 5px"></i>Add to favourite </button>
+                                        </form:form></li>
+                                    </sec:authorize>
+                                    <sec:authorize access="!isAuthenticated()">
+                                        <li><a href="/login"><i class="fa-solid fa-heart" style="color: #ffffff;margin-right: 5px"></i>Login to add your favourite list</a></li>
+                                    </sec:authorize>
                                 </ul>
 
                                 <div class="card__description card__description--details">

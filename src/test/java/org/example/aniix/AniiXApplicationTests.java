@@ -7,6 +7,7 @@ import org.example.aniix.repositories.IFlimRepository;
 import org.example.aniix.services.ICategoryService;
 import org.example.aniix.services.IFlimService;
 import org.example.aniix.services.ISeasonService;
+import org.example.aniix.services.IUserService;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,18 +30,17 @@ class AniiXApplicationTests {
     @Autowired
     ICategoryService categoryService;
     @Autowired
-
     ICategoryRepository repository;
     @Autowired
-
     ModelMapper modelMapper;
     @Autowired
-
     IFlimRepository flimRepository;
     @Autowired
     IFlimService flimService;
     @Autowired
     ISeasonService service;
+    @Autowired
+    IUserService userService;
 
     @Test
     void contextLoads() {

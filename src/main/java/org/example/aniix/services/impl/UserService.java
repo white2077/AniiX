@@ -1,7 +1,10 @@
 package org.example.aniix.services.impl;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.UsersDTO;
+import org.example.aniix.entities.Flim;
 import org.example.aniix.entities.Users;
+import org.example.aniix.repositories.IFlimRepository;
 import org.example.aniix.repositories.IUsersRepository;
 import org.example.aniix.services.IUserService;
 import org.modelmapper.ModelMapper;
@@ -15,15 +18,16 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 @Service
+@AllArgsConstructor
 public class UserService implements IUserService {
-    @Autowired
     private IUsersRepository repository;
-    @Autowired
     private ModelMapper modelMapper;
+    private IFlimRepository flimRepository;
+
     public List<UsersDTO> getAll() {
         return repository.findAll()
                 .stream()
-                .map(category -> modelMapper.map(category,UsersDTO.class))
+                .map(category -> modelMapper.map(category, UsersDTO.class))
                 .toList();
     }
 
@@ -42,9 +46,9 @@ public class UserService implements IUserService {
         else if (repository.findByEmail(dto.getEmail()).isPresent())
             throw new AlreadyExistsException("Email already exist");
         else return modelMapper
-                .map(
-                        repository.save(modelMapper.map(dto, Users.class)), UsersDTO.class
-                );
+                    .map(
+                            repository.save(modelMapper.map(dto, Users.class)), UsersDTO.class
+                    );
     }
 
     @Override
@@ -70,5 +74,20 @@ public class UserService implements IUserService {
     @Override
     public int getTotalPage(int amount) {
         return 0;
+    }
+
+    @Override
+    public void addFavouriteFilm(String username, Long filmId) {
+        Users user = repository.findByUsername(username).orElseThrow(
+                () -> new NoSuchElementException("Not Found"));
+        user.getFlims().add(flimRepository.findById(filmId).orElseThrow(() -> new NoSuchElementException("")));
+        repository.save(user);
+    }
+
+    @Override
+    public UsersDTO getByUserName(String username) {
+        return modelMapper
+                .map(repository.findByUsername(username)
+                        .orElseThrow(() -> new NoSuchElementException("Not found")), UsersDTO.class);
     }
 }

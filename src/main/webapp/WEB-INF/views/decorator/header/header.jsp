@@ -80,7 +80,7 @@
 
                                   <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownUser">
                                       <li><a href="#">View profile</a></li>
-                                      <li><a href="#">My favourite</a></li>
+                                      <li><a href="/user/${user.username}/favourite-list">My favourite</a></li>
                                       <li><a href="/logout">Logout</a></li>
                                   </ul>
                               </li>
