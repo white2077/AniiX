@@ -261,7 +261,7 @@
     console.log(id)
     let API_KEY_GET = "http://localhost:8080/api/v1/season/"+id+"/all-season"
     myApp.controller('GetSeasonByFilmId',($scope,$http)=>{
-        $http.get(API_KEY)
+        $http.get(API_KEY_GET)
             .then((response)=>{
                 console.log(response.data)
             })

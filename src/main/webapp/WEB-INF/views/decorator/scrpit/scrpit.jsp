@@ -24,7 +24,7 @@
     let myApp = angular.module("category",[]);
     myApp.controller('categoryController', function($scope, $http) {
         // Gọi API
-        $http.get('http://localhost:8080/api/v1/category-api/get-all-category')
+        $http.get('https://aniix.vn/api/v1/category-api/get-all-category')
             .then(function(response) {
                 $scope.responseData = response.data;
                 console.log(response)
