@@ -1,5 +1,6 @@
 package org.example.aniix.security;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,15 +11,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
-
+@AllArgsConstructor
 public class CustomUserDetails implements UserDetails {
     private Users user;
-
-    public CustomUserDetails(Users user) {
-        super();
-        this.user = user;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
@@ -26,6 +21,9 @@ public class CustomUserDetails implements UserDetails {
             authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         });
          return authorities;
+    }
+    public Long getId(){
+       return user.getId();
     }
 
     @Override

@@ -100,7 +100,6 @@ public class AdminFlimController {
             model.addAttribute("flim", this.flimFormValidator);
             model.addAttribute("check", true);
             if (bindingResult.hasErrors()) {
-                System.out.println(bindingResult);
                 return "/admin/UploadAnime.jsp";
             }
         }

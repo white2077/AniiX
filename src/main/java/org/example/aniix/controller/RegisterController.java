@@ -49,12 +49,10 @@ public class RegisterController {
             usersDTO.setPassword(encoder.encode(password));
             usersDTO.setEmail(email);
             userService.insert(usersDTO);
-            System.out.println("Register Complete");
             return "redirect:/login";
         }catch (Exception e){
             model = e.getMessage().contains("User") ?
                     model.addAttribute("userError", e.getMessage()) : model.addAttribute("emailError", e.getMessage());
-            System.out.println(e.getMessage()   );
             return "register/register.jsp";
         }
     }

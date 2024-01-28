@@ -10,9 +10,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<%@include file="../decorator/head/head.jsp"%>
+<%@include file="../decorator/head/head.jsp" %>
 <body>
-<%@include file="../decorator/header/header.jsp"%>
+<%@include file="../decorator/header/header.jsp" %>
 <section class="section details">
     <!-- details background -->
     <div class="details__bg" data-bg="/flim-image/${flim.thumbnail}"></div>
@@ -60,16 +60,38 @@
                                     </li>
                                     <li><span>Release year:</span> ${flim.releaseYear}</li>
                                     <li><span>Seasons:</span> ${flim.seasons.size()} seasons</li>
-                                    <li><span>Country:</span> <a href="#">${flim.country.name}</a> </li>
+                                    <li><span>Country:</span> <a href="#">${flim.country.name}</a></li>
                                     <sec:authorize access="hasAnyAuthority('ADMIN','USER')">
-                                        <li><form:form action="/user/add-to-favourite-list" method="post">
-                                            <input hidden="hidden" name="username" value="${user.username}">
-                                            <input  hidden="hidden" name="filmId" value="${flim.id}">
-                                            <button type="submit" class="section__btn"><i class="fa-solid fa-heart" style="color: #ffffff;margin-right: 5px"></i>Add to favourite </button>
-                                        </form:form></li>
+                                        <c:choose>
+                                            <c:when test="${checkFilm}">
+                                                <li><form:form action="/user/add-to-favourite-list" method="post">
+                                                    <input hidden="hidden" name="username" value="${user.username}">
+                                                    <input hidden="hidden" name="filmId" value="${flim.id}">
+                                                    <button type="submit" class="section__btn"><i
+                                                            class="fa-solid fa-heart"
+                                                            style="color: #ffffff;margin-right: 5px"></i>Add to
+                                                        favourite
+                                                    </button>
+                                                </form:form>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li>
+                                                    <form:form action="/user/remove-film/${id}" method="delete">
+                                                        <button type="submit" class="section__btn"><i
+                                                                class="fa-solid fa-heart"
+                                                                style="color: #ffffff;margin-right: 5px"></i>Remove from
+                                                            favourite
+                                                        </button>
+                                                    </form:form>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </sec:authorize>
                                     <sec:authorize access="!isAuthenticated()">
-                                        <li><a href="/login"><i class="fa-solid fa-heart" style="color: #ffffff;margin-right: 5px"></i>Login to add your favourite list</a></li>
+                                        <li><a href="/login"><i class="fa-solid fa-heart"
+                                                                style="color: #ffffff;margin-right: 5px"></i>Login to
+                                            add your favourite list</a></li>
                                     </sec:authorize>
                                 </ul>
 
@@ -86,7 +108,11 @@
 
             <!-- player -->
             <div class="col-12 col-xl-6">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/jF-tPrcAimQ" title="【歌ってみた】祝福 / YOASOBI  【にじさんじフミ】" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>            </div>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/jF-tPrcAimQ"
+                        title="【歌ってみた】祝福 / YOASOBI  【にじさんじフミ】" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+            </div>
             <!-- end player -->
 
             <!-- accordion -->
@@ -96,13 +122,15 @@
 
                         <div class="accordion__card">
                             <div class="card-header" id="heading${season.id}">
-                                <button type="button" data-toggle="collapse" data-target="#collapse${season.id}" aria-expanded="true" aria-controls="collapseOne">
+                                <button type="button" data-toggle="collapse" data-target="#collapse${season.id}"
+                                        aria-expanded="true" aria-controls="collapseOne">
                                     <span>${season.seasonName}</span>
-<%--                                    <span>22 Episodes from Nov, 2004 until May, 2005</span>--%>
+                                        <%--                                    <span>22 Episodes from Nov, 2004 until May, 2005</span>--%>
                                 </button>
                             </div>
 
-                            <div id="collapse${season.id}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div id="collapse${season.id}" class="collapse show" aria-labelledby="headingOne"
+                                 data-parent="#accordion">
                                 <div class="card-body">
                                     <table class="accordion__list">
                                         <thead>
@@ -117,7 +145,9 @@
                                         <c:forEach items="${season.episodes}" var="episode" varStatus="loop">
                                             <tr>
                                                 <th>${loop.count}</th>
-                                                <td><a href="/flim/${flim.id}/watch/${episode.id}">${season.seasonName}</a></td>
+                                                <td>
+                                                    <a href="/flim/${flim.id}/watch/${episode.id}">${season.seasonName}</a>
+                                                </td>
                                                 <td>${episode.uploadDate}</td>
                                             </tr>
                                         </c:forEach>
@@ -303,7 +333,7 @@
         </div>
     </div>
 </section>
-<%@include file="../decorator/footer/footer.jsp"%>
-<%@include file="../decorator/scrpit/scrpit.jsp"%>
+<%@include file="../decorator/footer/footer.jsp" %>
+<%@include file="../decorator/scrpit/scrpit.jsp" %>
 </body>
 </html>

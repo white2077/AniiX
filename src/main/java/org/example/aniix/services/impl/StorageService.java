@@ -59,7 +59,6 @@ public class StorageService implements IStorageService {
             try(InputStream inputStream = file.getInputStream()){
                 Files.copy(inputStream,destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
             }
-            System.out.println(storageFolder.toAbsolutePath());
             return generatedFileName;
         }catch (IOException e){
             throw new RuntimeException("Can not store file ",e);
@@ -69,12 +68,9 @@ public class StorageService implements IStorageService {
     @Override
     public void deleteByImageName(String name) {
         Path filePath = storageFolder.resolve(name);
-        System.out.println(filePath.toAbsolutePath());
         try {
             Files.delete(filePath);
-            System.out.println("File deleted successfully: " + name);
         } catch (IOException e) {
-            System.err.println("Error deleting file: " + name);
             e.printStackTrace();
         }
     }
@@ -122,7 +118,6 @@ public class StorageService implements IStorageService {
     private void deleteTempFile(File file) {
         if (file != null && file.exists()) {
             file.delete();
-            System.out.println("Đã xóa tệp: " + file.getAbsolutePath());
         }
     }
 
