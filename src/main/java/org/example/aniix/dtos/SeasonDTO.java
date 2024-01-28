@@ -1,5 +1,6 @@
 package org.example.aniix.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +17,6 @@ public class SeasonDTO {
     private Integer releaseYear;
     private Timestamp uploadDate;
     private Boolean status;
+    @JsonIgnore
     private List<EpisodeDTO> episodes;
 }

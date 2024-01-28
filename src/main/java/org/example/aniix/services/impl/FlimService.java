@@ -15,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -111,6 +113,8 @@ public class FlimService implements IFlimService {
 
     @Override
     public UploadFlimDTO addSeason(UploadSeasonDTO uploadSeasonDTO) {
+        uploadSeasonDTO.setStatus(true);
+        uploadSeasonDTO.setUploadDate(Timestamp.valueOf(LocalDateTime.now()));
         return modelMapper
                 .map(seasonRepository.save(modelMapper.map(uploadSeasonDTO, Season.class)), UploadFlimDTO.class);
     }

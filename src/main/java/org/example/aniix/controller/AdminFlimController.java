@@ -72,6 +72,7 @@ public class AdminFlimController {
     public String updatePage(@PathVariable("id") Long id, Model model) {
         uploadFlimDTO = flimService.getFlimForUpload(id);
         seasonFormValidator = new SeasonFormValidator();
+        model.addAttribute("filmId",id);
         seasonFormValidator.setSeasonName(" Season "+(flimService.getById(id).getSeasons().size()+1)+": "+uploadFlimDTO.getName());
         model.addAttribute("flim", uploadFlimDTO);
         model.addAttribute("title", uploadFlimDTO.getName());

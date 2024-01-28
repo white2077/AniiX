@@ -15,7 +15,7 @@
     <%@include file="../decorator/head/AdminHead.jsp" %>
     >
 </head>
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed" ng-app="app" ng-controller="GetSeasonByFilmId">
 <%@include file="../decorator/header/AdminHeader.jsp" %>
 
 <div id="layoutSidenav">
@@ -91,6 +91,7 @@
                         </form:form>
                     </c:when>
                     <c:when test="${!check}">
+                        <input id="filmId" hidden="hidden" value="${filmId}">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="anime-tab" data-bs-toggle="tab"
@@ -254,6 +255,18 @@
 
 
 <%@include file="../decorator/scrpit/AdminScprit.jsp" %>
+<script>
+    let myApp = angular.module("app",[])
+    let id = document.getElementById('filmId').value;
+    console.log(id)
+    let API_KEY_GET = "http://localhost:8080/api/v1/season/"+id+"/all-season"
+    myApp.controller('GetSeasonByFilmId',($scope,$http)=>{
+        $http.get(API_KEY)
+            .then((response)=>{
+                console.log(response.data)
+            })
+    })
+</script>
 </body>
 
 </html>
