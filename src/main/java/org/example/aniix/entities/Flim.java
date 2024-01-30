@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -29,7 +30,7 @@ public class Flim {
 
 
     @ManyToMany
-    private List<Category> categories;
+    private Set<Category> categories = new HashSet<>();
     @OneToMany(mappedBy = "flim")
     private List<Season> seasons;
     @ManyToMany

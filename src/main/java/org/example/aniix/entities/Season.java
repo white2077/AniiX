@@ -21,7 +21,7 @@ public class Season {
     private Integer releaseYear;
     private Timestamp uploadDate;
     private Boolean status;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Flim flim;
     @OneToMany(mappedBy = "season")
     private List<Episode> episodes;

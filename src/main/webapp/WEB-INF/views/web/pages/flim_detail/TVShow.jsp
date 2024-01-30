@@ -11,7 +11,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <head>
-    <title></title>
+    <title>${flim.name}</title>
 </head>
 <html>
 <body>

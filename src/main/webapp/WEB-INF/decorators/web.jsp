@@ -34,12 +34,22 @@
     <meta name="author" content="Dmitry Volkov">
     <title>Aniix – Online Anime Movies, Anime TV Shows <sitemesh:write property="title"/></title>
 </head>
+<%--Iam using sitemesh decorator to create web layout and MPA web --%>
+<%--This is web layout page--%>
+<%--this page like index.html--%>
+
 <body>
+<%--it's same ng-include in angular js :)--%>
+
 <%@include file="../views/web/layouts/header/header.jsp" %>
 
+
+<%--it's same ng-view in angular js :)--%>
 <sitemesh:write property="body"/>
 
+<%--it's same ng-include in angular js :)--%>
 <%@include file="../views/web/layouts/footer/footer.jsp" %>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
         integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="

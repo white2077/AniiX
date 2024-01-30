@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,5 +20,5 @@ public class Category {
     @Column(columnDefinition = "nvarchar(150)")
     private String name;
     @ManyToMany(mappedBy = "categories")
-    Set<Flim> flimList;
+    Set<Flim> flimList = new HashSet<>();
 }

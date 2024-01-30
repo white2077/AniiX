@@ -1,25 +1,33 @@
 package org.example.aniix.services.impl;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.CategoryDTO;
+import org.example.aniix.dtos.FlimDTO;
 import org.example.aniix.dtos.TagDTO;
 import org.example.aniix.entities.Category;
+import org.example.aniix.entities.Flim;
 import org.example.aniix.repositories.ICategoryRepository;
+import org.example.aniix.repositories.IFlimRepository;
 import org.example.aniix.services.ICategoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class CategoryService implements ICategoryService {
-    @Autowired
+
     private ICategoryRepository repository;
-    @Autowired
+
     private ModelMapper modelMapper;
+    private IFlimRepository flimRepository;
     @Override
     public List<CategoryDTO> getAll() {
         return repository.findAll()
@@ -52,6 +60,10 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public void delete(Long id) {
+        Category category = repository.findById(id).orElseThrow();
+        Set <Flim> flims = category.getFlimList();
+        flims.forEach(flim -> flim.getCategories().remove(category));
+        flimRepository.saveAll(flims);
         repository.deleteById(id);
     }
 

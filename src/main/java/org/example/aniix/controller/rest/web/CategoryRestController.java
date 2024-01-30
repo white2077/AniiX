@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("api/v1/category-api")
@@ -17,7 +16,9 @@ public class CategoryRestController {
  private ICategoryService categoryService;
     @GetMapping("/get-all-category")
     ResponseEntity<?> getAllCategory(){
-     return ResponseEntity.ok(categoryService.getAll());
+        ArrayList<CategoryDTO> categoryDTOS = new ArrayList<>(categoryService.getAll());
+        Collections.reverse(categoryDTOS);
+     return ResponseEntity.ok(categoryDTOS);
     }
     @PostMapping("/add-new-category")
     ResponseEntity<?> addCategory(@RequestBody CategoryDTO categoryDTO){
@@ -26,7 +27,6 @@ public class CategoryRestController {
     @PutMapping("/update-category")
     public ResponseEntity<?> updateCategory(@RequestBody CategoryDTO categoryDTO){
         categoryService.update(categoryDTO);
-
         return ResponseEntity.ok("update category complete");
     }
     @DeleteMapping("/delete-category/{id}")

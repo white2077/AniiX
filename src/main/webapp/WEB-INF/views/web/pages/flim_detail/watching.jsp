@@ -8,7 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
-    <title></title>
+    <title>${flim.name}</title>
 </head>
 <html>
 <body>

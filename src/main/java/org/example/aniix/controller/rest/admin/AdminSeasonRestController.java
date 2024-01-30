@@ -28,6 +28,10 @@ public class AdminSeasonRestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponeObject("Fail", "Film not found", ""));
         }
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getSeasonByID(@PathVariable("id")Long id){
+        return ResponseEntity.ok(seasonService.getById(id));
+    }
 
     @PostMapping("/{id}/add-season")
     public ResponseEntity<ResponeObject> addSeason(@PathVariable("id") Long id, @RequestBody UploadSeasonDTO uploadSeasonDTO) {

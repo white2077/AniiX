@@ -28,10 +28,18 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-114x114.png">
 </head>
 <body>
+
+<%--Iam using sitemesh decorator to create web layout and MPA web --%>
+<%--this page like index.html--%>
+<%--This is admin layout page--%>
+
+<%--it's same ng-include in angular js :)--%>
 <%@include file="../views/admin/layouts/header/AdminHeader.jsp" %>
+
+<%--it's same ng-view in angular js :)--%>
 <div id="layoutSidenav">
     <%@include file="../views/admin/layouts/sidebar/SideBar.jsp" %>
-        <sitemesh:write property='body'/>
+    <sitemesh:write property='body'/>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
