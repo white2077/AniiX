@@ -4,6 +4,7 @@ import org.example.aniix.dtos.UsersDTO;
 import org.example.aniix.security.CustomUserDetails;
 import org.example.aniix.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -19,8 +20,10 @@ public class UseController {
     private IUserService userService;
 
     @PostMapping("/add-to-favourite-list")
-    public String addToFavouriteList(@RequestParam("filmId") Long filmId, @RequestParam("username") String username) {
-        userService.addFavouriteFilm(username, filmId);
+    public String addToFavouriteList(@RequestParam("filmId") Long filmId) {
+        SecurityContext context =SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();
+        userService.addFavouriteFilm(authentication.getName(), filmId);
         System.out.println(filmId);
         return "redirect:/flim/" + filmId;
     }
