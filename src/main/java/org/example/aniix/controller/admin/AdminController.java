@@ -1,4 +1,4 @@
-package org.example.aniix.controller;
+package org.example.aniix.controller.admin;
 
 import org.example.aniix.services.IFlimService;
 import org.springframework.beans.factory.annotation.Autowired;

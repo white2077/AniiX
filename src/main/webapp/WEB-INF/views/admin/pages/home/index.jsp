@@ -130,6 +130,7 @@
             </div>
         </div>
     </main>
+    <%@include file="../../layouts/footer/AdminFooter.jsp" %>
 </div>
 </body>
 </html>

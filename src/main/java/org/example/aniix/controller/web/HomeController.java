@@ -1,4 +1,4 @@
-package org.example.aniix.controller;
+package org.example.aniix.controller.web;
 
 import org.example.aniix.services.ICategoryService;
 import org.example.aniix.services.IFlimService;

@@ -1,4 +1,4 @@
-package org.example.aniix.controller;
+package org.example.aniix.controller.admin;
 
 import org.example.aniix.dtos.*;
 import org.example.aniix.services.*;

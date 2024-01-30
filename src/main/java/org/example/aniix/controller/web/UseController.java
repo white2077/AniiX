@@ -1,4 +1,4 @@
-package org.example.aniix.controller;
+package org.example.aniix.controller.web;
 
 import org.example.aniix.dtos.UsersDTO;
 import org.example.aniix.security.CustomUserDetails;
@@ -21,6 +21,7 @@ public class UseController {
     @PostMapping("/add-to-favourite-list")
     public String addToFavouriteList(@RequestParam("filmId") Long filmId, @RequestParam("username") String username) {
         userService.addFavouriteFilm(username, filmId);
+        System.out.println(filmId);
         return "redirect:/flim/" + filmId;
     }
 
@@ -31,7 +32,7 @@ public class UseController {
         model.addAttribute("currentPage", 0);
         model.addAttribute("pagingType", true);
         model.addAttribute("allPage", 0);
-        return "CategoryDetails/CategoryDetails.jsp";
+        return "web/pages/category_details/CategoryDetails.jsp";
     }
 
     @DeleteMapping("/remove-film/{id}")

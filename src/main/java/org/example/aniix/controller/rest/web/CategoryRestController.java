@@ -1,4 +1,4 @@
-package org.example.aniix.controller;
+package org.example.aniix.controller.rest.web;
 
 import org.example.aniix.dtos.CategoryDTO;
 import org.example.aniix.services.ICategoryService;

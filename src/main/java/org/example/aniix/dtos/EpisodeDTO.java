@@ -1,5 +1,6 @@
 package org.example.aniix.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.sql.Timestamp;
@@ -12,6 +13,7 @@ public class EpisodeDTO {
     private String linkFlim;
     private Boolean status;
     private Timestamp uploadDate;
+    @JsonIgnore
     private SeasonDTO season;
     private Timestamp updateDate;
 }

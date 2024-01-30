@@ -45,7 +45,10 @@ public class SeasonService implements ISeasonService {
 
     @Override
     public void update(SeasonDTO dto) {
-        repository.save(modelMapper.map(dto,Season.class));
+        Season season = repository.findById(dto.getId()).orElseThrow();
+        season.setSeasonName(dto.getSeasonName());
+        season.setReleaseYear(dto.getReleaseYear());
+        repository.save(season);
     }
 
     @Override

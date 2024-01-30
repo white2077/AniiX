@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -20,7 +21,9 @@
     <link rel="stylesheet" href="/css/photoswipe.css" type="text/css">
     <link rel="stylesheet" href="/css/default-skin.css" type="text/css">
     <link rel="stylesheet" href="/css/main.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" /><!-- Favicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/><!-- Favicons -->
     <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
     <link rel="apple-touch-icon" href="/icon/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
@@ -32,13 +35,11 @@
     <title>Aniix – Online Anime Movies, Anime TV Shows <sitemesh:write property="title"/></title>
 </head>
 <body>
-<%@include file="../views/web/layouts/header/header.jsp"%>
+<%@include file="../views/web/layouts/header/header.jsp" %>
 
 <sitemesh:write property="body"/>
 
-<%@include file="../views/web/layouts/footer/footer.jsp"%>
-
-
+<%@include file="../views/web/layouts/footer/footer.jsp" %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
         integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="

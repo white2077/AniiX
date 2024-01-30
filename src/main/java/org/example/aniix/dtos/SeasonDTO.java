@@ -17,6 +17,5 @@ public class SeasonDTO {
     private Integer releaseYear;
     private Timestamp uploadDate;
     private Boolean status;
-    @JsonIgnore
     private List<EpisodeDTO> episodes;
 }

@@ -1,4 +1,4 @@
-package org.example.aniix.controller;
+package org.example.aniix.controller.web;
 
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;

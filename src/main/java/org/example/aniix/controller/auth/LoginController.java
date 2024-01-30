@@ -1,4 +1,4 @@
-package org.example.aniix.controller;
+package org.example.aniix.controller.auth;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.BadCredentialsException;

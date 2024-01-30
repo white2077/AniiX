@@ -1,4 +1,4 @@
-package org.example.aniix.controller;
+package org.example.aniix.controller.web;
 
 import org.example.aniix.dtos.CategoryDTO;
 import org.example.aniix.dtos.FlimDTO;

@@ -1,4 +1,4 @@
-package org.example.aniix.controller;
+package org.example.aniix.controller.rest.admin;
 
 import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.ResponeObject;
@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("api/v1/season")
 @AllArgsConstructor
-public class SeasonRestController {
+public class AdminSeasonRestController {
     private IFlimService flimService;
     private ISeasonService seasonService;
     @GetMapping("/{id}/all-season")
@@ -39,12 +39,15 @@ public class SeasonRestController {
     public ResponseEntity<ResponeObject> updateSeason(@PathVariable("id") Long id, @RequestBody SeasonDTO seasonDTO) {
         seasonDTO.setId(id);
         seasonService.update(seasonDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponeObject("Complete", "update film season complete", ""));
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ResponeObject("Complete", "update film season complete", ""));
     }
-    @DeleteMapping("update-season/{id}")
+    @DeleteMapping("delete-season/{id}")
     public ResponseEntity<ResponeObject> updateSeason(@PathVariable("id") Long id) {
         seasonService.delete(id);
-        return ResponseEntity.status(HttpStatus.OK).body(new ResponeObject("Complete", "delete film season complete", ""));
+        return ResponseEntity
+                .status(HttpStatus.OK).
+                body(new ResponeObject("Complete", "delete film season complete", ""));
     }
 
 }

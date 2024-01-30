@@ -1,4 +1,4 @@
-package org.example.aniix.controller;
+package org.example.aniix.controller.auth;
 
 import org.example.aniix.dtos.RoleDTO;
 import org.example.aniix.dtos.UsersDTO;
