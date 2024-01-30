@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,29 +29,20 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="Dmitry Volkov">
-    <title>Aniix – Online Anime Movies, Anime TV Shows</title>
+    <title>Aniix – Online Anime Movies, Anime TV Shows <sitemesh:write property="title"/></title>
 </head>
-<body class="body">
+<body>
+<%@include file="../views/web/layouts/header/header.jsp"%>
 
-<!-- page 404 -->
-<div class="page-404 section--bg" data-bg="img/section/section.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="page-404__wrap">
-                    <div class="page-404__content">
-                        <h1 class="page-404__title">400</h1>
-                        <p class="page-404__text">Bad request</p>
-                        <a href="/" class="page-404__btn">go back home page</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end page 404 -->
+<sitemesh:write property="body"/>
 
-<!-- JS -->
+<%@include file="../views/web/layouts/footer/footer.jsp"%>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
+        integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/js/jquery-3.3.1.min.js" type="application/javascript"></script>
 <script src="/js/bootstrap.bundle.min.js" type="application/javascript"></script>
 <script src="/js/owl.carousel.min.js" type="application/javascript"></script>
@@ -64,7 +55,23 @@
 <script src="/js/photoswipe.min.js" type="application/javascript"></script>
 <script src="/js/photoswipe-ui-default.min.js" type="application/javascript"></script>
 <script src="/js/main.js" type="application/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
+        integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    let myApp = angular.module("category", []);
+    myApp.controller('categoryController', function ($scope, $http) {
+        // Gọi API
+        $http.get('https://aniix.vn/api/v1/category-api/get-all-category')
+            .then(function (response) {
+                $scope.responseData = response.data;
+                console.log(response)
+            })
+            .catch(function (error) {
+                // Xử lý lỗi
+                console.error('Error:', error);
+            });
+    });
+</script>
 </body>
-
 </html>

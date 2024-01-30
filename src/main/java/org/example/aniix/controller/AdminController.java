@@ -16,6 +16,6 @@ public class AdminController {
     public String adminPage(Model model) {
         model.addAttribute("flim", flimService.getAllNewest());
 
-        return "admin/index.jsp";
+        return "admin/pages/home/index.jsp";
     }
 }

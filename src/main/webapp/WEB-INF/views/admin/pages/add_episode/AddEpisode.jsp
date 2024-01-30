@@ -5,13 +5,8 @@
 <html>
 <head>
     <title>Title</title>
-    <%@include file="../decorator/head/AdminHead.jsp" %>
 </head>
 <body class="sb-nav-fixed">
-<%@include file="../decorator/header/AdminHeader.jsp" %>
-
-<div id="layoutSidenav">
-    <%@include file="../decorator/SideBar/SideBar.jsp" %>
 
     <div id="layoutSidenav_content">
         <main ng-app="myApp" ng-controller="MyController">
@@ -121,13 +116,7 @@
                 </div>
             </div>
         </main>
-
-        <%@include file="../decorator/footer/AdminFooter.jsp" %>
     </div>
-</div>
-
-
-<%@include file="../decorator/scrpit/AdminScprit.jsp" %>
 <script>
     // window.addEventListener('load', function() {
     //     // Chạy AngularJS

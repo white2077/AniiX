@@ -65,7 +65,7 @@ public class AdminFlimController {
         model.addAttribute("tagsList", tagService.getAll());
         model.addAttribute("categories", categoryService.getAll());
         model.addAttribute("check", true);
-        return "admin/UploadAnime.jsp";
+        return "admin/pages/upload/UploadAnime.jsp";
     }
 
     @GetMapping("/update-flim/{id}")
@@ -78,7 +78,7 @@ public class AdminFlimController {
         model.addAttribute("title", uploadFlimDTO.getName());
         model.addAttribute("season",seasonFormValidator);
         model.addAttribute("allSeason",flimService.getById(id).getSeasons());
-        return "admin/UploadAnime.jsp";
+        return "admin/pages/upload/UploadAnime.jsp";
 
     }
 
@@ -101,11 +101,11 @@ public class AdminFlimController {
             model.addAttribute("flim", this.flimFormValidator);
             model.addAttribute("check", true);
             if (bindingResult.hasErrors()) {
-                return "/admin/UploadAnime.jsp";
+                return "admin/pages/upload/UploadAnime.jsp";
             }
         }
         model.addAttribute("flim", new FlimFormValidator());
-        return "admin/UploadAnime.jsp";
+        return "admin/pages/upload/UploadAnime.jsp";
     }
 
     @PutMapping("/update-flim")
@@ -129,7 +129,7 @@ public class AdminFlimController {
             this.flimFormValidator = flimFormValidator;
             model.addAttribute("uploadStatus", 3);
             model.addAttribute("flim", this.flimFormValidator);
-            return "/admin/UploadAnime.jsp";
+            return "admin/pages/upload/UploadAnime.jsp";
         }
         return "redirect:/admin/admin-page";
     }

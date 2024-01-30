@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
     @Autowired
     private IFlimService flimService;
-    @GetMapping("")
+    @GetMapping("/")
     public String home(Model model){
         model.addAttribute("top5Newest",flimService.getTop5Newest());
         model.addAttribute("flimList",flimService.getTop10Newest());
-        return "home/Home.jsp";
+        return "web/pages/home/Home.jsp";
     }
 }

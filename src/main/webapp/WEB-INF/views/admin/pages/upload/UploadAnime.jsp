@@ -12,15 +12,8 @@
 <html>
 <head>
     <title>Title</title>
-    <%@include file="../decorator/head/AdminHead.jsp" %>
-    >
 </head>
-<body class="sb-nav-fixed" ng-app="app" ng-controller="GetSeasonByFilmId">
-<%@include file="../decorator/header/AdminHeader.jsp" %>
-
-<div id="layoutSidenav">
-    <%@include file="../decorator/SideBar/SideBar.jsp" %>
-
+<body class="sb-nav-fixed">
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
@@ -199,7 +192,8 @@
                                                 <td>${x.episodes.size()}</td>
                                                 <td>${x.releaseYear}</td>
                                                 <td>${x.uploadDate}</td>
-                                                <td><a href="/admin/episode/season/${x.id}" class="btn btn-success">Click :)</a></td>
+                                                <td><a href="/admin/episode/season/${x.id}" class="btn btn-success">Click
+                                                    :)</a></td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                             data-bs-target="#editSeason${x.id}">
@@ -210,28 +204,35 @@
                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                 </form:form></td>
                                             </tr>
-                                            <div class="modal fade" id="editSeason${x.id}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                            <div class="modal fade" id="editSeason${x.id}" tabindex="-1"
+                                                 aria-labelledby="exampleModalLabel"
                                                  aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit season name</h1>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit
+                                                                season name</h1>
+                                                            <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"
                                                                     aria-label="Close"></button>
                                                         </div>
                                                         <form:form action="/admin/update-season/${x.id}"
                                                                    method="put">
                                                             <div class="modal-body">
 
-                                                                <label for="formFile" class="form-label">Update season name
+                                                                <label for="formFile" class="form-label">Update season
+                                                                    name
                                                                     :)</label>
-                                                                <input name="seasonName" class="form-control" type="text">
+                                                                <input name="seasonName" class="form-control"
+                                                                       type="text">
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                         data-bs-dismiss="modal">Close
                                                                 </button>
-                                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                                                <button type="submit" class="btn btn-primary">Save
+                                                                    changes
+                                                                </button>
                                                             </div>
                                                         </form:form>
                                                     </div>
@@ -248,23 +249,15 @@
                 </c:choose>
             </div>
         </main>
-
-        <%@include file="../decorator/footer/AdminFooter.jsp" %>
     </div>
-</div>
-
-
-<%@include file="../decorator/scrpit/AdminScprit.jsp" %>
 <script>
-    let myApp = angular.module("app",[])
-    let id = document.getElementById('filmId').value;
-    console.log(id)
-    let API_KEY_GET = "http://localhost:8080/api/v1/season/"+id+"/all-season"
-    myApp.controller('GetSeasonByFilmId',($scope,$http)=>{
-        $http.get(API_KEY_GET)
-            .then((response)=>{
-                console.log(response.data)
-            })
+    let myApp = angular.module('app',[])
+    myApp.controller('SeasonController',($scope,$http)=>{
+        let filmId = document.getElementById('filmId').value
+        let API_GET_ALL ='https://aniix.vn/api/v1/season/'+filmId+'/all-season'
+        $http.get(API_GET_ALL).then((res)=>{
+            console.log(res.data.data)
+        })
     })
 </script>
 </body>

@@ -38,7 +38,7 @@ public class AdminEpisodeController {
         seasonId = id;
         episodeValidator = new EpisodeValidator();
         mapModel(model);
-        return "admin/AddEpisode.jsp";
+        return "admin/pages/add_episode/AddEpisode.jsp";
     }
     @PostMapping("/add-episode")
     public String addEpisode(@Valid EpisodeValidator episodeValidator, BindingResult bindingResult){

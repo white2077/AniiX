@@ -1,15 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
-    <%@include file="../decorator/head/head.jsp"%>
+<head>
+    <title>Home Page</title>
+</head>
 <body class="body">
-<!-- header -->
-<%@include file="../decorator/header/header.jsp"%>
-<!-- end header -->
-
-<!-- home -->
 <section class="home home--bg">
     <div class="container">
         <div class="row">
@@ -55,7 +50,6 @@
         </div>
     </div>
 </section>
-<!-- end home -->
 
 <!-- content -->
 <section class="content">
@@ -276,17 +270,4 @@
     </div>
 </section>
 <!-- end expected premiere -->
-
-<!-- partners -->
-
-<!-- end partners -->
-
-<!-- footer -->
-<%@include file="../decorator/footer/footer.jsp"%>
-<!-- end footer -->
-
-<!-- JS -->
-<%@include file="../decorator/scrpit/scrpit.jsp"%>
 </body>
-
-</html>

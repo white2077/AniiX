@@ -9,10 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
-<%@include file="../decorator/head/head.jsp"%>
 <body>
-<%@include file="../decorator/header/header.jsp"%>
-
 <!-- page title -->
 <section class="section section--first section--bg" data-bg="/img/section/section.jpg">
     <div class="container">
@@ -247,7 +244,5 @@
     </div>
 </div>
 <!-- end catalog -->
-<%@include file="../decorator/footer/footer.jsp"%>
-<%@include file="../decorator/scrpit/scrpit.jsp"%>
 </body>
 </html>

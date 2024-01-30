@@ -50,14 +50,14 @@ public class FlimController {
         } catch (Exception e) {
             model.addAttribute("checkFilm", false);
         }
-        return "/FlimDetails/TVShow.jsp";
+        return "web/pages/flim_detail/TVShow.jsp";
     }
 
     @GetMapping("/{flimId}/watch/{episodeId}")
     public String wacthFlim(@PathVariable("flimId") Long flimId, @PathVariable("episodeId") Long episodeId, Model model) {
         model.addAttribute("flim", flimService.getById(flimId));
         model.addAttribute("episode", episodeService.getById(episodeId));
-        return "FlimDetails/watching.jsp";
+        return "web/pages/flim_detail/watching.jsp";
     }
 
     @GetMapping("/all-flim/page/{page}")
@@ -72,7 +72,7 @@ public class FlimController {
         if (page > totalPage && totalPage>0) {
             return "redirect:/flim/all-flim/page/"+1;
         }
-        return "CategoryDetails/CategoryDetails.jsp";
+        return "web/pages/category_details/CategoryDetails.jsp";
     }
 
     @GetMapping("/category/{id}/{page}")
@@ -87,7 +87,7 @@ public class FlimController {
             if (page > totalPage && totalPage>0) {
                 return "redirect:/flim/category/"+id+"/"+1;
             }
-                return "CategoryDetails/CategoryDetails.jsp";
+                return "web/pages/category_details/CategoryDetails.jsp";
     }
 
     @ModelAttribute("allCategory")
@@ -108,6 +108,6 @@ public class FlimController {
         if (page > totalPage && totalPage>0) {
             return "redirect:/flim/searching?keyword=" + keyword + "&page=1";
         }
-            return "CategoryDetails/CategoryDetails.jsp";
+            return "web/pages/category_details/CategoryDetails.jsp";
     }
 }

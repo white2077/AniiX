@@ -25,6 +25,6 @@ public class CategoryDetailsController {
         model.addAttribute("category",categoryDTO);
         List<FlimDTO> flimDTOS = flimService.getAllByCategoryId(id);
         model.addAttribute("flims",flimDTOS);
-        return "CategoryDetails/CategoryDetails.jsp";
+        return "web/pages/category_details/CategoryDetails.jsp";
     }
 }
