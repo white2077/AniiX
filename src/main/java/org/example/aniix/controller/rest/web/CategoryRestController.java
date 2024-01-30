@@ -1,5 +1,6 @@
 package org.example.aniix.controller.rest.web;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.CategoryDTO;
 import org.example.aniix.services.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,8 @@ import java.util.*;
 @RestController
 @RequestMapping("api/v1/category-api")
 @CrossOrigin
+@AllArgsConstructor
 public class CategoryRestController {
- @Autowired
  private ICategoryService categoryService;
     @GetMapping("/get-all-category")
     ResponseEntity<?> getAllCategory(){

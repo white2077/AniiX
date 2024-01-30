@@ -1,5 +1,6 @@
 package org.example.aniix.services.impl;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.CountryDTO;
 import org.example.aniix.entities.Country;
 import org.example.aniix.repositories.ICountryRespository;
@@ -14,12 +15,10 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 @Service
+@AllArgsConstructor
 public class CountryService implements ICountryService {
-    @Autowired
     private ICountryRespository repository;
-    @Autowired
     private ModelMapper modelMapper;
-    @Override
     public List<CountryDTO> getAll() {
         return repository.findAll()
                 .stream()

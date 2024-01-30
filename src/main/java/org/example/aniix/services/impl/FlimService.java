@@ -1,5 +1,6 @@
 package org.example.aniix.services.impl;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.FlimDTO;
 import org.example.aniix.dtos.UploadFlimDTO;
 import org.example.aniix.dtos.UploadSeasonDTO;
@@ -22,14 +23,11 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 @Service
+@AllArgsConstructor
 public class FlimService implements IFlimService {
-    @Autowired
     private IFlimRepository flimRepository;
-    @Autowired
     private ModelMapper modelMapper;
-    @Autowired
     private ICategoryRepository categoryRepository;
-    @Autowired
     private ISeasonRepository seasonRepository;
 
     @Override

@@ -1,5 +1,6 @@
 package org.example.aniix.controller.web;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.RoleDTO;
 import org.example.aniix.dtos.UsersDTO;
 import org.example.aniix.entities.Role;
@@ -21,12 +22,11 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping
+@AllArgsConstructor
 public class RegisterController {
-    @Autowired
+
     private IUserService userService;
-    @Autowired
     private PasswordEncoder encoder;
-    @Autowired
     private IRoleService roleService;
     @GetMapping("/register")
     public String register(){

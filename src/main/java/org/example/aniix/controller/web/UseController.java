@@ -1,5 +1,6 @@
 package org.example.aniix.controller.web;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.UsersDTO;
 import org.example.aniix.security.CustomUserDetails;
 import org.example.aniix.services.IUserService;
@@ -15,8 +16,8 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
-public class UseController {
-    @Autowired
+@AllArgsConstructor
+    public class UseController {
     private IUserService userService;
 
     @PostMapping("/add-to-favourite-list")

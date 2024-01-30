@@ -1,5 +1,6 @@
 package org.example.aniix.controller.web;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.services.ICategoryService;
 import org.example.aniix.services.IFlimService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping
+@AllArgsConstructor
+
 public class HomeController {
-    @Autowired
     private IFlimService flimService;
     @GetMapping("/")
     public String home(Model model){

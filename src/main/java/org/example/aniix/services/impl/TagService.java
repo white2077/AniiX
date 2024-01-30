@@ -1,5 +1,6 @@
 package org.example.aniix.services.impl;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.TagDTO;
 import org.example.aniix.entities.Tag;
 import org.example.aniix.repositories.ITagRepository;
@@ -14,10 +15,9 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 @Service
+@AllArgsConstructor
 public class TagService implements ITagService {
-    @Autowired
     private ITagRepository repository;
-    @Autowired
     private ModelMapper modelMapper;
     @Override
     public List<TagDTO> getAll() {

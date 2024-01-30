@@ -1,5 +1,6 @@
 package org.example.aniix.services.impl;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.EpisodeDTO;
 import org.example.aniix.entities.Episode;
 import org.example.aniix.repositories.IEpisodeRepository;
@@ -16,10 +17,10 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 @Service
+@AllArgsConstructor
+
 public class EpisodeService implements IEpisodeService {
-    @Autowired
     private IEpisodeRepository repository;
-    @Autowired
     private ModelMapper modelMapper;
     @Override
     public List<EpisodeDTO> getAll() {

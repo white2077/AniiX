@@ -1,5 +1,6 @@
 package org.example.aniix.services.impl;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.RoleDTO;
 import org.example.aniix.entities.Role;
 import org.example.aniix.repositories.IRoleReposittory;
@@ -14,10 +15,9 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 @Service
+@AllArgsConstructor
 public class RoleService implements IRoleService {
-    @Autowired
     private IRoleReposittory repository;
-    @Autowired
     private ModelMapper modelMapper;
     public List<RoleDTO> getAll() {
         return repository.findAll()

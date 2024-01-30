@@ -212,8 +212,9 @@
                             <tbody>
                             <tr ng-repeat="x in allData">
                                 <td><img width="50vh" src="/flim-image/${flim.thumbnail}" alt=""></td>
-                                <td ng-click="setSeasonId(x.id)" data-bs-target="#episode" data-bs-toggle="modal">
-                                    {{x.seasonName}}
+                                <td >
+                                    <a ng-click="setSeasonId(x.id)" data-bs-target="#episode" data-bs-toggle="modal">                                    {{x.seasonName}}
+                                    </a>
                                 </td>
                                 <td>{{x.episodes.length}}</td>
                                 <td>{{x.releaseYear}}</td>
@@ -323,6 +324,7 @@
         let API_UPDATE = 'https://aniix.vn/api/v1/season/update-season/'
         let API_POST = 'https://aniix.vn/api/v1/season/' + filmId + '/add-season'
         let API_GET_EPISODES = 'https://aniix.vn/api/v1/season/'
+       //all variable
         $scope.allData = []
         $scope.seasonName = ''
         $scope.releaseYear = 0;
@@ -330,7 +332,7 @@
         $scope.seasonNameStatus = '';
         $scope.releaseYearStatus = ''
         $scope.allEpisodesBySeasonId = [];
-
+        //function
         function validateForm() {
             if ($scope.seasonName === '' && $scope.releaseYear <= 0) {
                 $scope.releaseYearStatus = 'Year invalid'

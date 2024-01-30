@@ -1,5 +1,6 @@
 package org.example.aniix.services.impl;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.SeasonDTO;
 import org.example.aniix.entities.Season;
 import org.example.aniix.repositories.ISeasonRepository;
@@ -14,12 +15,11 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 @Service
+@AllArgsConstructor
+
 public class SeasonService implements ISeasonService {
-    @Autowired
     private ISeasonRepository repository;
-    @Autowired
     private ModelMapper modelMapper;
-    @Override
     public List<SeasonDTO> getAll() {
         return repository.findAll()
                 .stream()

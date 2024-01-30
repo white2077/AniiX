@@ -1,5 +1,6 @@
 package org.example.aniix.controller.web;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.CategoryDTO;
 import org.example.aniix.dtos.FlimDTO;
 import org.example.aniix.security.CustomUserDetails;
@@ -23,14 +24,12 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/flim")
+@AllArgsConstructor
+
 public class FlimController {
-    @Autowired
     private IFlimService flimService;
-    @Autowired
     private IEpisodeService episodeService;
-    @Autowired
     private ICategoryService categoryService;
-    @Autowired
     private IUserService userService;
 
     @GetMapping("/{id}")

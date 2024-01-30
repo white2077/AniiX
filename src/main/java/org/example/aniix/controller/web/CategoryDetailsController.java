@@ -1,5 +1,6 @@
 package org.example.aniix.controller.web;
 
+import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.CategoryDTO;
 import org.example.aniix.dtos.FlimDTO;
 import org.example.aniix.services.ICategoryService;
@@ -15,10 +16,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/category")
+@AllArgsConstructor
+
 public class CategoryDetailsController {
-    @Autowired
     private ICategoryService categoryService;
-    @Autowired private IFlimService flimService;
+    private IFlimService flimService;
     @GetMapping("/{id}")
     public String category(Model model, @PathVariable("id") Long id){
         CategoryDTO categoryDTO = categoryService.getById(id);
