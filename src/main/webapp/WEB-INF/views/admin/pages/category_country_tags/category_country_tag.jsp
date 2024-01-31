@@ -23,17 +23,17 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
                             data-bs-target="#category-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
-                            aria-selected="true">Home
+                            aria-selected="true">Category
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#tag-tab-pane"
-                            type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile
+                            type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Country
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#country-tab-pane"
-                            type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact
+                            type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Tag
                     </button>
                 </li>
 
@@ -66,6 +66,7 @@
                                                 <label for="name" class="form-label">Category name</label>
                                                 <input type="text" class="form-control" id="name"
                                                        ng-model="categoryName">
+                                                <span style="color: red">{{categoryValidate}}</span>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -81,14 +82,17 @@
                         <table class="table table-bordered table-hover">
                             <thead class="table-dark">
                             <tr>
-                                <th>Category name</th>
+                                <th>
+                                    Category name
+                                </th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr ng-repeat="x in category">
-                                <td>{{x.name}}</td>
+                                <td  data-bs-toggle="modal"
+                                     data-bs-target="#detailsModal" ng-click="allFilm(x.id)">{{x.name}}</td>
                                 <td>
                                     <a class="btn btn-success" ng-click="getId(x.id)" data-bs-toggle="modal"
                                        data-bs-target="#editModal">
@@ -106,7 +110,7 @@
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5">Add category</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                                                aria-label="Close" ng-click="clearForm()"></button>
                                     </div>
                                     <form ng-submit="updateCategory()">
                                         <div class="modal-body">
@@ -116,12 +120,34 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
+                                            <button ng-click="clearForm()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary" >Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5">List films in category</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                        <div class="modal-body">
+                                            <ul class="list-group" ng-repeat="x in listFilm">
+                                                <li class="list-group-item"><a href="/admin/update-flim/{{x.id}}">{{x.name}}</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                                 Close
                                             </button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
                                         </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -148,9 +174,13 @@
         const API_PUT_CATEGORY = 'https://aniix.vn/api/v1/category-api/update-category'
         let API_DELETE_BY_ID = "https://aniix.vn/api/v1/category-api/delete-category/"
         const API_POST_CATEGORY = "https://aniix.vn/api/v1/category-api/add-new-category"
+        let API_GET_FILM_BY_CATEGORY_ID ='https://aniix.vn/api/v1.film-api/film/category/'
+        let API_GET_BY_ID = 'https://aniix.vn/api/v1/category-api/category/'
 
         $scope.category = []
         $scope.categoryName = ''
+        $scope.categoryValidate = ''
+        $scope.listFilm = [];
         $scope.categoryId = 0
         let categoryId = 0;
 
@@ -163,10 +193,40 @@
                 console.log(error)
             })
         }
+        $scope.fillForm=()=>{
+            $http.get(API_GET_BY_ID+categoryId)
+                .then((res)=>{
+                    $scope.categoryName = res.data.name
+                })
+                .catch((err)=>console.log(err))
+        }
+        $scope.allFilm=(id)=>{
+            $http.get(API_GET_FILM_BY_CATEGORY_ID+id)
+                .then((res)=>{
+                    $scope.listFilm = res.data
+                    console.log($scope.listFilm)
+                })
+        }
+        function validate(){
+            if ($scope.categoryName === ''){
+                $scope.categoryValidate = 'invalid name'
+                console.log(123)
+                return false;
+            }
+            else{
+                $scope.categoryValidate = ''
+                return true
+            }
+
+        }
+        $scope.clearForm = ()=>{
+            $scope.categoryName = ''
+        }
 
         getData()
         $scope.getId = (id) => {
             categoryId = id
+            $scope.fillForm()
         }
         $scope.deleteById = (id) => {
             $http.delete(API_DELETE_BY_ID + id)
@@ -179,6 +239,7 @@
                 })
         }
         $scope.insertCategory = () => {
+            if(validate()){
             let category = {
                 "name": $scope.categoryName
             }
@@ -186,23 +247,30 @@
                 function (response) {
                     $scope.categoryName = ""
                     getData()
+                    $scope.clearForm()
                 }
             ).catch(
                 function (error) {
                     console.log(error)
                 }
             )
+            }
         }
         $scope.updateCategory = () => {
+            if(validate()){
             $http.put(API_PUT_CATEGORY,
                 {
                     "id": categoryId,
                     "name": $scope.categoryName
-                }).catch(()=>{
+                })
+                .then(()=>{
+                    $scope.clearForm()
+                })
+                .catch(()=>{
                 getData();
 
             })
-            $scope.categoryName = ''
+            }
         }
     })
 </script>

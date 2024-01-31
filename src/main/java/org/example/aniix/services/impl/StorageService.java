@@ -22,6 +22,7 @@ import video.api.client.api.models.VideoCreationPayload;
 
 @Service
 public class StorageService implements IStorageService {
+    private final String API_KEY = "1Z1F0ID3OMtuuiYw45UAvrBY5UbAhjoxnrQp0hKBKxJ";
 
     private final Path storageFolder = Path.of("upload");
 

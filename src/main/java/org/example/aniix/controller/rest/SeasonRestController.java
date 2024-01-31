@@ -1,4 +1,4 @@
-package org.example.aniix.controller.rest.admin;
+package org.example.aniix.controller.rest;
 
 import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.ResponeObject;
@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("api/v1/season")
 @AllArgsConstructor
-public class AdminSeasonRestController {
+public class SeasonRestController {
     private IFlimService flimService;
     private ISeasonService seasonService;
     @GetMapping("/{id}/all-season")

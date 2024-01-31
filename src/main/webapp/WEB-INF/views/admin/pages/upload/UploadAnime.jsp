@@ -175,20 +175,19 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Season name</label>
                                                 <input type="text" class="form-control" ng-model="seasonName">
-                                                <span>{{seasonNameStatus}}</span>
+                                                <span style="color: red">{{seasonNameStatus}}</span>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Release year:</label>
                                                 <input type="number" class="form-control"
                                                        ng-model="releaseYear">
-                                                <span>{{releaseYearStatus}}</span>
+                                                <span style="color: red">{{releaseYearStatus}}</span>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close
+                                            <button type="button" class="btn btn-secondary">Close
                                             </button>
-                                            <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Save
+                                            <button type="submit" class="btn btn-primary">Save
                                                 changes
                                             </button>
                                         </div>
@@ -240,29 +239,29 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit season</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                                                aria-label="Close" ng-click="clear()"></button>
                                     </div>
                                     <form ng-submit="update(updateId)">
                                         <div class="modal-body">
                                             <div class="mb-3">
                                                 <label class="form-label">Season name</label>
                                                 <input type="text" class="form-control" ng-model="seasonName">
-                                                <span>{{seasonNameStatus}}</span>
+                                                <span style="color: red">{{seasonNameStatus}}</span>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Release year:</label>
                                                 <input type="number" class="form-control"
                                                        ng-model="releaseYear">
-                                                <span>{{releaseYearStatus}}</span>
+                                                <span style="color: red">{{releaseYearStatus}}</span>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close
+                                                   ng-click="clear()" data-bs-dismiss="modal">Close
                                             </button>
-                                            <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Save
+                                            <button type="submit"  class="btn btn-primary">Save
                                                 changes
                                             </button>
                                         </div>
@@ -324,9 +323,11 @@
         let API_UPDATE = 'https://aniix.vn/api/v1/season/update-season/'
         let API_POST = 'https://aniix.vn/api/v1/season/' + filmId + '/add-season'
         let API_GET_EPISODES = 'https://aniix.vn/api/v1/season/'
+        let API_GET_BY_ID ='https://aniix.vn/api/v1/season/'
        //all variable
+        let countSeason=0;
         $scope.allData = []
-        $scope.seasonName = ''
+        $scope.seasonName ='Season '+countSeason+': '+'${flim.name} '
         $scope.releaseYear = 0;
         $scope.updateId = 0;
         $scope.seasonNameStatus = '';
@@ -350,14 +351,24 @@
                 return true
             }
         }
+        function fillForm(id){
+            $http.get(API_GET_BY_ID+id)
+                .then((res)=>{
+                    $scope.seasonName = res.data.seasonName
+                    $scope.releaseYear = res.data.releaseYear
+                })
+        }
+
 
         function getAll() {
             $http.get(API_GET_ALL).then((res) => {
                 $scope.allData = res.data.data
+                countSeason = $scope.allData.length
             })
         }
 
         $scope.setId = (id) => {
+            fillForm(id);
             $scope.updateId = id;
         }
         getAll();
@@ -371,6 +382,7 @@
                 })
         }
         $scope.update = (id) => {
+
             let season = {
                 seasonName: $scope.seasonName,
                 releaseYear: $scope.releaseYear
@@ -380,7 +392,7 @@
                 $http.patch(API_UPDATE + $scope.updateId, season)
                     .then(() => {
                         getAll();
-                        clearFrom()
+                        $scope.clear()
                     })
                     .catch((err) => {
                         console.log(err)
@@ -395,13 +407,13 @@
                 }
                 $http.post(API_POST, season).then(() => {
                     getAll()
-                    clearFrom()
+                    $scope.clear()
                 })
             }
         }
 
-        function clearFrom() {
-            $scope.seasonName = ''
+        $scope.clear =()=> {
+            $scope.seasonName ='Season '+countSeason+': '+'${flim.name} '
             $scope.releaseYear = 0;
         }
 

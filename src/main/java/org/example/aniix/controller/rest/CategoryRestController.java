@@ -1,4 +1,4 @@
-package org.example.aniix.controller.rest.web;
+package org.example.aniix.controller.rest;
 
 import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.CategoryDTO;
@@ -20,6 +20,10 @@ public class CategoryRestController {
         ArrayList<CategoryDTO> categoryDTOS = new ArrayList<>(categoryService.getAll());
         Collections.reverse(categoryDTOS);
      return ResponseEntity.ok(categoryDTOS);
+    }
+    @GetMapping("category/{id}")
+    ResponseEntity<?> getCategoryById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(categoryService.getById(id));
     }
     @PostMapping("/add-new-category")
     ResponseEntity<?> addCategory(@RequestBody CategoryDTO categoryDTO){
