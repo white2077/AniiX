@@ -1,2 +1,4 @@
-package org.example.aniix.controller.rest;public class TagRestController {
+package org.example.aniix.controller.rest;
+
+public class TagRestController {
 }

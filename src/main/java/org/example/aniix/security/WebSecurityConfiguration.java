@@ -41,8 +41,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login", "/logout", "/")
                 .permitAll()
                 .antMatchers("/admin/**")
-//                .permitAll()
-                .hasAuthority("ADMIN")
+                .permitAll()
+//                .hasAuthority("ADMIN")
                 .antMatchers("/user/**")
                 .authenticated()
                 .and()
@@ -50,7 +50,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .successHandler(customAuthenticationSuccseshandler())
                 .failureForwardUrl("/login")
-//                .failureHandler(customAuthenticationFailure())
                 .permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/login")
@@ -61,7 +60,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .maximumSessions(1)
                 .expiredUrl("/");
     }
-
     @Bean
     CustomAuthenticationSuccseshandler customAuthenticationSuccseshandler() {
         return new CustomAuthenticationSuccseshandler();

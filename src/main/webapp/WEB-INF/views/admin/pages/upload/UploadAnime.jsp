@@ -325,9 +325,7 @@
         let API_GET_EPISODES = 'https://aniix.vn/api/v1/season/'
         let API_GET_BY_ID ='https://aniix.vn/api/v1/season/'
        //all variable
-        let countSeason=0;
         $scope.allData = []
-        $scope.seasonName ='Season '+countSeason+': '+'${flim.name} '
         $scope.releaseYear = 0;
         $scope.updateId = 0;
         $scope.seasonNameStatus = '';
@@ -363,7 +361,8 @@
         function getAll() {
             $http.get(API_GET_ALL).then((res) => {
                 $scope.allData = res.data.data
-                countSeason = $scope.allData.length
+        $scope.seasonName ='Season '+($scope.allData.length+1)+': '+'${flim.name}'
+                console.log($scope.allData.length)
             })
         }
 

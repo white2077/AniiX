@@ -3,7 +3,9 @@ package org.example.aniix.services.impl;
 import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.CountryDTO;
 import org.example.aniix.entities.Country;
+import org.example.aniix.entities.Flim;
 import org.example.aniix.repositories.ICountryRespository;
+import org.example.aniix.repositories.IFlimRepository;
 import org.example.aniix.services.ICountryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,12 @@ import java.util.Set;
 public class CountryService implements ICountryService {
     private ICountryRespository repository;
     private ModelMapper modelMapper;
+    private IFlimRepository flimRepository;
+
     public List<CountryDTO> getAll() {
         return repository.findAll()
                 .stream()
-                .map(category -> modelMapper.map(category,CountryDTO.class))
+                .map(category -> modelMapper.map(category, CountryDTO.class))
                 .toList();
     }
 
@@ -44,12 +48,20 @@ public class CountryService implements ICountryService {
 
     @Override
     public void update(CountryDTO dto) {
-        repository.save(modelMapper.map(dto,Country.class));
+        Country country = repository.findById(dto.getId()).orElseThrow();
+        country.setName(dto.getName());
+        repository.save(country);
     }
 
     @Override
     public void delete(Long id) {
-        repository.findById(id);
+        Country country = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Country not not found"));
+        List<Flim> flims = country.getFlims();
+        flims.forEach(flim -> {
+            flim.setCountry(null);
+        });
+        flimRepository.saveAll(flims);
+        repository.deleteById(id);
     }
 
     @Override

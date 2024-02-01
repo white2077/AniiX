@@ -17,7 +17,6 @@ public class AdminController {
     @GetMapping("/admin-page")
     public String adminPage(Model model) {
         model.addAttribute("flim", flimService.getAllNewest());
-
         return "admin/pages/home/index.jsp";
     }
 }
