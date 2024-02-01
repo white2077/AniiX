@@ -224,7 +224,7 @@
 
                         <thead class="table-dark">
                         <tr>
-                            <th>Category name</th>
+                            <th>Countries name</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -256,7 +256,7 @@
                     <table class="table table-bordered table-hover">
                         <thead class="table-dark">
                         <tr>
-                            <th>Category name</th>
+                            <th>Tags name</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
