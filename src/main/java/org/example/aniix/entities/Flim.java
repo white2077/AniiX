@@ -39,4 +39,6 @@ public class Flim {
     private Set<Users> users;
     @ManyToOne
     private Country country;
+    @OneToMany(mappedBy = "flim")
+    private List<Comments> comments;
 }

@@ -1,6 +1,7 @@
 package org.example.aniix.services.impl;
 
 import lombok.AllArgsConstructor;
+import org.example.aniix.dtos.ResUsersDTO;
 import org.example.aniix.dtos.UsersDTO;
 import org.example.aniix.entities.Flim;
 import org.example.aniix.entities.Users;
@@ -89,5 +90,10 @@ public class UserService implements IUserService {
         return modelMapper
                 .map(repository.findByUsername(username)
                         .orElseThrow(() -> new NoSuchElementException("Not found")), UsersDTO.class);
+    }
+
+    @Override
+    public List<ResUsersDTO> getAllListUsers() {
+        return repository.findAll().stream().map(users -> modelMapper.map(users,ResUsersDTO.class)).toList();
     }
 }

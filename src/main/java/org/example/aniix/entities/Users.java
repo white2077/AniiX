@@ -7,6 +7,7 @@ import lombok.NonNull;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -30,4 +31,6 @@ public class Users {
     private Set<Flim> flims;
     @ManyToMany
     private Set<Role> roles;
+    @OneToMany(mappedBy = "users")
+    private List<Comments> comments;
 }

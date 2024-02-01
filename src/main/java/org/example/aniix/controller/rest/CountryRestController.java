@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import org.example.aniix.dtos.CountryDTO;
 import org.example.aniix.dtos.ResponeObject;
 import org.example.aniix.services.ICountryService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.acls.model.AlreadyExistsException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,7 +24,8 @@ public class CountryRestController {
     }
     @PostMapping("/add-country")
     public ResponseEntity<?> addCountry(@RequestBody CountryDTO countryDTO){
-        return ResponseEntity.ok(countryService.insert(countryDTO));
+           CountryDTO dto = countryService.insert(countryDTO);
+           return ResponseEntity.ok(new ResponeObject("OK","Insert user complete :)",dto));
     }
     @PutMapping("/update-country/{id}")
     public ResponseEntity<?> updateCountry(@PathVariable("id") Long id,@RequestBody CountryDTO countryDTO){
