@@ -246,9 +246,39 @@
 
                 </div>
 
+
+
+
+
+
                 <div class="tab-pane fade" id="country-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
-                     tabindex="0">...
+                     tabindex="0" ng-controller="TagsController">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-dark">
+                        <tr>
+                            <th>Category name</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="x in allData">
+                            <td data-bs-toggle="modal">{{x.tag}}
+                            </td>
+                            <td>
+                                <button data-bs-toggle="modal"
+                                        data-bs-target="#editCountryModal" ng-click=""
+                                        class="btn btn-success">Edit
+                                </button>
+                            </td>
+                            <td><a class="btn btn-danger" ng-click="">Delete</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
+
+
+
 
             </div>
         </div>
@@ -431,6 +461,17 @@
             }
         }
 
+    })
+
+    myApp.controller('TagsController',($scope,$http)=>{
+        const API_GET_ALL = 'https://aniix.vn/api/v1/tags/all-tags';
+        $scope.allData  = []
+        function getAll(){
+            $http.get(API_GET_ALL)
+                .then((res)=>$scope.allData = res.data.data)
+                .catch((err)=>console.log(err))
+        }
+        getAll()
     })
 </script>
 </body>
